@@ -13,7 +13,7 @@ Clientes.
 Tipo Carnet.
 
 Funcionalidades del servicio interno:
-Exmanes tipo test.
+Examanes tipo test.
 Notificaciones a alumnos.
 Consulta de clases.
 Revision de examenes.
