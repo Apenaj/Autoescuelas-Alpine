@@ -23,7 +23,7 @@ Vamos a hacer una pagina web para gestionar una autoescuela.
 - Consulta de clases
 - Revision de examenes
 - Clases practicas
-- calendario laboral
+- Calendario laboral
 
 ## Entidades
 - Alumnos
