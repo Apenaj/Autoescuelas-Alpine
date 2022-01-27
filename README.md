@@ -7,6 +7,7 @@ Vamos a hacer una pagina web para gestionar una autoescuela.
 - Los clientes podran escoger entre los distintos tipos de carnet
 - La autoescuela cuenta con bonos de clases.
 - Eleccion de turno.
+- Curos de recuperacion de puntos de carnet o clases de recuerdo.
                                       
 
 ### Privadas:
