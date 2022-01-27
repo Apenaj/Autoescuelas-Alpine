@@ -10,6 +10,10 @@ La autoescuela cuenta con bonos de clases.
 ### Privadas:
 Envio de examenes tipo test a los alumnos  por parte de los profesores,
 Los alumnos recibiran un resumen del resultado de la última semana.
+Gestion de clases practicas con vehiculo autopropulsado.
+
+
+
 
 ### Servicio interno:
 Examanes tipo test,
