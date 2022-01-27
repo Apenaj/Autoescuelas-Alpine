@@ -6,6 +6,7 @@ Vamos a hacer una pagina web para gestionar una autoescuela.
 ### Publicas:
 - Los clientes podran escoger entre los distintos tipos de carnet
 - La autoescuela cuenta con bonos de clases.
+- Eleccion de turno.
                                       
 
 ### Privadas:
