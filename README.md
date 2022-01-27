@@ -15,20 +15,12 @@ Vamos a hacer una pagina web para gestionar una autoescuela.
 - Los alumnos recibiran un resumen del resultado de la última semana.
 - Gestion de clases practicas con vehiculo autopropulsado.
 
-
-
-
 ### Servicio interno:
-- Examenes tipo test
 - Notificaciones a alumnos
-- Consulta de clases
-- Revision de examenes
-- Clases practicas
-- Calendario laboral
+- Notificacion de clases
 
 ## Entidades
 - Alumnos
 - Profesores
 - Clase
-- Clientes
-- Tipo Carnet
+- Examen
