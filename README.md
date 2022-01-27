@@ -19,7 +19,7 @@ Vamos a hacer una pagina web para gestionar una autoescuela.
 
 
 ### Servicio interno:
-- Examanes tipo test
+- Examenes tipo test
 - Notificaciones a alumnos
 - Consulta de clases
 - Revision de examenes
