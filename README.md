@@ -1,17 +1,17 @@
 # Autoescuelas-Alpine
-# Descripcion
+## Descripcion
 Vamos a hacer una pagina web para gestionar una autoescuela.
 
-# Funcionalidades públicas.
+## Funcionalidades
+### Publicas:
 Los clientes podran escoger entre los distintos tipos de carnet,
 La autoescuela cuenta con bonos de clases.
 
-
-# Funcionalidades privadas.
+### Privadas:
 Envio de examenes tipo test a los alumnos  por parte de los profesores,
 Los alumnos recibiran un resumen del resultado de la última semana.
 
-# Funcionalidades del servicio interno:
+### Servicio interno:
 Examanes tipo test,
 Notificaciones a alumnos,
 Consulta de clases,
@@ -19,7 +19,7 @@ Revision de examenes,
 Clases practicas,
 calendario laboral.
 
-# Entidades:
+## Entidades
 Alumnos,
 Profesores,
 Clase,
