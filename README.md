@@ -4,8 +4,9 @@ Vamos a hacer una pagina web para gestionar una autoescuela.
 
 ## Funcionalidades
 ### Publicas:
-Los clientes podran escoger entre los distintos tipos de carnet,
+-Los clientes podran escoger entre los distintos tipos de carnet
 La autoescuela cuenta con bonos de clases.
+                                      
 
 ### Privadas:
 Envio de examenes tipo test a los alumnos  por parte de los profesores,
