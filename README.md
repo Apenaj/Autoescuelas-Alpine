@@ -11,13 +11,6 @@ La autoescuela cuenta con bonos de clases.
 Envio de examenes tipo test a los alumnos  por parte de los profesores,
 Los alumnos recibiran un resumen del resultado de la última semana.
 
-# Entidades:
-Alumnos,
-Profesores,
-Clase,
-Clientes,
-Tipo Carnet.
-
 # Funcionalidades del servicio interno:
 Examanes tipo test,
 Notificaciones a alumnos,
@@ -26,3 +19,9 @@ Revision de examenes,
 Clases practicas,
 calendario laboral.
 
+# Entidades:
+Alumnos,
+Profesores,
+Clase,
+Clientes,
+Tipo Carnet.
