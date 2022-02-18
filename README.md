@@ -25,4 +25,4 @@ Vamos a hacer una pagina web para gestionar una autoescuela.
 - Clase
 - Examen
 - Carnet
-- Vehiculo
+- Coche
