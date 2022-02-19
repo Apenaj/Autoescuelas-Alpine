@@ -1,0 +1,19 @@
+<html>
+<body>
+<p>Bienvenido a {{name}}</p>
+
+<a href="bienvenida">Bienvenida</a>
+
+<form method="post" action='procesarAltaAlumno'>
+	
+	<label for="dni">D.N.I.:</label>
+	<input type="text" name='dni' value='{{dni}}'>
+	
+	<label for="nombreCompleto">Nombre Completo:</label>
+	<input type="text" name='nombreCompleto' value='{{nombreCompleto}}'>
+	
+	<input type="submit" value='grabar'>
+
+</form>
+</body>
+</html>

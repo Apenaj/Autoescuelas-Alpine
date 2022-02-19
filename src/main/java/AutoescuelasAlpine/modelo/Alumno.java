@@ -19,11 +19,9 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Alumno {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long idAlumno;
-	
 	private String nombreCompleto;
+	
+	@Id
 	private String dni;
 	
 	@ManyToMany
@@ -33,9 +31,7 @@ public class Alumno {
 	public Alumno() {
 		super();
 	}
-	
-	
-	
+		
 	
 	public Alumno(String nombreCompleto, String dni) {
 		super();
@@ -43,15 +39,7 @@ public class Alumno {
 		this.dni = dni;
 	}
 
-
-
-
-	public long getIdAlumno() {
-		return idAlumno;
-	}
-	public void setIdAlumno(long idAlumno) {
-		this.idAlumno = idAlumno;
-	}
+	
 	public String getNombreCompleto() {
 		return nombreCompleto;
 	}
@@ -70,7 +58,7 @@ public class Alumno {
 
 	@Override
 	public String toString() {
-		return "Alumno [idAlumno=" + idAlumno + ", nombreCompleto=" + nombreCompleto + ", dni=" + dni + "]";
+		return "Alumno [ nombreCompleto=" + nombreCompleto + ", dni=" + dni + "]";
 	}
 	
 	
