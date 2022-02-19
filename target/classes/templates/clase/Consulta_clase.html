@@ -1,0 +1,40 @@
+<html>
+<body>
+<p>Bienvenido a {{name}}</p>
+
+<a href="bienvenida">Bienvenida</a>
+
+<form method="post" action='procesarBuscaClaseFecha'>
+	
+	
+	<label for="fecha">Fecha de la clase:</label>
+	<input type="date" name="fecha" min="{{fechaMinima}}"  />
+  
+  	<label for="hora">Hora de comienzo:</label>
+  	<input type="time" name="hora" min="{{horaApertura}}" max="{{horaCierre}}" step="{{duracion}}" />
+	<input type="submit" value='buscar'>
+
+</form>
+
+<form method="post" action='procesarBuscaClaseCarnet'>
+	
+	
+	<label for="carnet">Carnet:</label>
+	<input type="text" name='carnet' value='{{carnet}}'>
+	
+	<input type="submit" value='buscar'>
+
+</form>
+
+<form method="post" action='procesarBuscaClaseProfesor'>
+	
+	
+	<label for="profesor">Profesor:</label>
+	<input type="text" name='profesor' value='{{profesor}}'>
+	
+	<input type="submit" value='buscar'>
+
+</form>
+
+</body>
+</html>

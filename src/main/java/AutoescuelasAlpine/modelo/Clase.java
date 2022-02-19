@@ -10,13 +10,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  * @author ja.conde
  *
  */
 @Entity
+@Table(uniqueConstraints=
+@UniqueConstraint(columnNames = {"fechaHoraComienzo", "profesor"})) 
 public class Clase {
 
 	@Id
@@ -24,7 +27,6 @@ public class Clase {
 	private long idClase;
 	
 	private Timestamp fechaHoraComienzo;
-	private int duracion;
 	
 	@ManyToOne
 	private Carnet carnet;
@@ -36,10 +38,9 @@ public class Clase {
 		super();
 	}
 
-	public Clase(Timestamp fechaHoraComienzo, int duracion, Carnet carnet, Profesores profesor) {
+	public Clase(Timestamp fechaHoraComienzo, Carnet carnet, Profesores profesor) {
 		super();
 		this.fechaHoraComienzo = fechaHoraComienzo;
-		this.duracion = duracion;
 		this.carnet = carnet;
 		this.profesor = profesor;
 	}
@@ -58,14 +59,6 @@ public class Clase {
 
 	public void setFechaHoraComienzo(Timestamp fechaHoraComienzo) {
 		this.fechaHoraComienzo = fechaHoraComienzo;
-	}
-
-	public int getDuracion() {
-		return duracion;
-	}
-
-	public void setDuracion(int duracion) {
-		this.duracion = duracion;
 	}
 
 	public Carnet getCarnet() {

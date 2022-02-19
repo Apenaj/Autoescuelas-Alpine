@@ -4,8 +4,6 @@
 package AutoescuelasAlpine.modelo;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -15,12 +13,10 @@ import javax.persistence.Id;
 @Entity
 public class Profesores {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long idProfesor;
 	
-	private String nombreCompleto;
+	@Id
 	private String dni;
+	private String nombreCompleto;
 
 	
 	
@@ -36,12 +32,7 @@ public class Profesores {
 	}
 
 
-	public long getIdProfesor() {
-		return idProfesor;
-	}
-	public void setIdProfesor(long idProfesor) {
-		this.idProfesor = idProfesor;
-	}
+	
 	public String getNombreCompleto() {
 		return nombreCompleto;
 	}

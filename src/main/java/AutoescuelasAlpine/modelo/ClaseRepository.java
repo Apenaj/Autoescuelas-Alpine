@@ -3,6 +3,9 @@
  */
 package AutoescuelasAlpine.modelo;
 
+import java.sql.Timestamp;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -11,4 +14,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface ClaseRepository extends JpaRepository<Clase, Long> {
 
+	List<Clase> findByfechaHoraComienzo(Timestamp fechaHoraComienzo);
+	List<Clase> findBycarnet(Carnet carnet);
+	List<Clase> findByprofesor(Profesores profesor);
+	
 }

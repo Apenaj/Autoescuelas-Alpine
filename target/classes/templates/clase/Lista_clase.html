@@ -1,0 +1,15 @@
+<html>
+<body>
+<p>Bienvenido a {{name}}</p>
+
+<a href="bienvenida">Bienvenida</a>
+
+	<p>Lsita de clases:</p>
+	<ul>
+		{{#clases}}
+			<li><a href='DetalleClase?idClase={{idClase}}'>{{fechaHoraComienzo}};{{carnet}};{{profesor}}</a></li>
+		{{/clases}}
+	</ul>
+
+</body>
+</html>
