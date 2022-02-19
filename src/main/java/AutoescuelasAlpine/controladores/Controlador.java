@@ -1,7 +1,7 @@
 /**
  * 
  */
-package AutoescuelasAlpine;
+package AutoescuelasAlpine.controladores;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

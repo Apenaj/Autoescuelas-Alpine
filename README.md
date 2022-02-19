@@ -14,6 +14,12 @@ Vamos a hacer una pagina web para gestionar una autoescuela.
 - Envio de examenes tipo test a los alumnos  por parte de los profesores
 - Los alumnos recibiran un resumen del resultado de la última semana.
 - Gestion de clases practicas con vehiculo autopropulsado.
+- Gestión de alumnos
+- Gestión de profesores
+- Gestión de clases
+- Gestión de Examenes
+- Gestión de Carnets
+- Gestión de Vehiculos
 
 ### Servicio interno:
 - Notificaciones a alumnos
