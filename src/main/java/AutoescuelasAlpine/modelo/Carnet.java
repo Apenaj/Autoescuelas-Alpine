@@ -3,8 +3,11 @@
  */
 package AutoescuelasAlpine.modelo;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  * @author ja.conde
@@ -22,11 +25,13 @@ public class Carnet {
 		super();
 	}
 
-
 	public Carnet(String tipo) {
 		super();
 		this.tipo = tipo;
 	}
+
+
+
 
 
 
