@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author ja.conde
  *
  */
-public interface ProfesoresRespository extends JpaRepository<Profesores, Long> {
+public interface ProfesoresRepository extends JpaRepository<Profesores, Long> {
 
 }
