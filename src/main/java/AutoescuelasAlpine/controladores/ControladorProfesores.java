@@ -31,7 +31,7 @@ public class ControladorProfesores {
 		model.addAttribute("nombreCompleto", "");
 		model.addAttribute("dni", "");
 		
-		return "Alta_profesor";
+		return "profesores/Alta_profesor";
 	}
 	/*
 	@PostMapping("/procesarAltaProfesor")

@@ -29,10 +29,10 @@ public class ControladorVehiculo {
 	public String altaVehiculo(Model model) {
 		model.addAttribute("name", "Autoescuelas Alpine, Alta nuevo vehiculo");
 		
-		model.addAttribute("matricula", "");
-		model.addAttribute("modelo", "");
+		//model.addAttribute("matricula", "");
+		//model.addAttribute("modelo", "");
 		
-		return "Alta_vehiculo";
+		return "vehiculo/Alta_vehiculo";
 	}
 	
 	@PostMapping("/procesarAltaVehiculo")
@@ -50,7 +50,7 @@ public class ControladorVehiculo {
 			
 			
 			
-			return "Detalle_vehiculo";
+			return "vehiculo/Detalle_vehiculo";
 		}else{
 			model.addAttribute("name", "Autoescuelas Alpine, Ya existe ese vehiculo");
 			
@@ -58,7 +58,7 @@ public class ControladorVehiculo {
 			model.addAttribute("matricula", vehiculo.getMatricula());
 			model.addAttribute("profesor", vehiculo.getProfesor());
 			
-			return "Detalle_vehiculo";
+			return "vehiculo/Detalle_vehiculo";
 		}
 		
 	}
@@ -67,7 +67,7 @@ public class ControladorVehiculo {
 	public String buscaVehiculo(Model model) {
 		model.addAttribute("name", "Autoescuelas Alpine, Buscar vehiculo");
 		
-		return "Consulta_vehiculo";
+		return "vehiculo/Consulta_vehiculo";
 	}
 
 	@PostMapping("/procesarBuscaVehiculo")
@@ -78,7 +78,7 @@ public class ControladorVehiculo {
 			
 			model.addAttribute("name", "Autoescuelas Alpine, No existe ese vehiculo");
 		
-			return "Consulta_vehiculo";
+			return "vehiculo/Consulta_vehiculo";
 		}else{
 			model.addAttribute("name", "Autoescuelas Alpine, Vehiculo");
 			
@@ -88,7 +88,7 @@ public class ControladorVehiculo {
 			
 			
 			
-			return "Detalle_vehiculo";
+			return "vehiculo/Detalle_vehiculo";
 		}
 		
 	}
@@ -100,7 +100,7 @@ public class ControladorVehiculo {
 
 			model.addAttribute("name", "Autoescuelas Alpine, No existe ese vehiculo");
 
-			return "Consulta_vehiculo";
+			return "vehiculo/Consulta_vehiculo";
 		}else{
 			model.addAttribute("name", "Autoescuelas Alpine, Modificar vehiculo");
 
@@ -108,7 +108,7 @@ public class ControladorVehiculo {
 			model.addAttribute("matricula", vehiculo.getMatricula());
 			model.addAttribute("profesor", vehiculo.getProfesor());
 
-			return "Modificar_vehiculo";
+			return "vehiculo/Modificar_vehiculo";
 		}
 	}
 	
@@ -125,12 +125,12 @@ public class ControladorVehiculo {
 			model.addAttribute("matricula", vehiculo.getMatricula());
 			model.addAttribute("profesor", vehiculo.getProfesor());
 			
-			return "Detalle_vehiculo";
+			return "vehiculo/Detalle_vehiculo";
 		}else{
 			model.addAttribute("name", "Autoescuelas Alpine, no existe ese vehiculo");
 			
 			
-			return "Consulta_vehiculo";
+			return "vehiculo/Consulta_vehiculo";
 		}
 		
 	}
@@ -142,13 +142,13 @@ public class ControladorVehiculo {
 
 			model.addAttribute("name", "Autoescuelas Alpine, No existe ese vehiculo");
 
-			return "Consulta_vehiculo";
+			return "vehiculo/Consulta_vehiculo";
 		}else{
 			model.addAttribute("name", "Autoescuelas Alpine,  Vehiculo borrado correctamente");
 
 			vehiculos.delete(vehiculo);
 			
-			return "Consulta_vehiculo";
+			return "vehiculo/Consulta_vehiculo";
 		}
 	}
 	

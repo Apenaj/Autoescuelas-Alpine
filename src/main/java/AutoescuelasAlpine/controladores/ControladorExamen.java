@@ -32,7 +32,7 @@ public class ControladorExamen {
 		
 		model.addAttribute("tipo", "");
 		
-		return "Alta_examen";
+		return "examen/Alta_examen";
 	}
 	
 	/*@PostMapping("/procesarAltaExamen")

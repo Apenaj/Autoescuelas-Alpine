@@ -18,8 +18,8 @@ import javax.persistence.UniqueConstraint;
  *
  */
 @Entity
-@Table(uniqueConstraints=
-@UniqueConstraint(columnNames = {"fechaHoraComienzo", "profesor"})) 
+//@Table(uniqueConstraints=
+//@UniqueConstraint(columnNames = {"fechaHoraComienzo", "profesor"})) 
 public class Clase {
 
 	@Id

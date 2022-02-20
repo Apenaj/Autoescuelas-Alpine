@@ -31,7 +31,7 @@ public class ControladorAlumnos {
 		model.addAttribute("nombreCompleto", "");
 		model.addAttribute("dni", "");
 		
-		return "Alta_alumno";
+		return "alumno/Alta_alumno";
 	}
 	
 	@PostMapping("/procesarAltaAlumno")
@@ -47,7 +47,7 @@ public class ControladorAlumnos {
 			
 			
 			
-			return "Detalle_alumno";
+			return "alumno/Detalle_alumno";
 		}else{
 			model.addAttribute("name", "Autoescuelas Alpine, Ya existe ese alumno");
 			
@@ -56,7 +56,7 @@ public class ControladorAlumnos {
 			
 			
 			
-			return "Detalle_alumno";
+			return "alumno/Detalle_alumno";
 		}
 		
 	}
@@ -65,7 +65,7 @@ public class ControladorAlumnos {
 	public String buscaAlumno(Model model) {
 		model.addAttribute("name", "Autoescuelas Alpine, Buscar alumno");
 		
-		return "Consulta_alumno";
+		return "alumno/Consulta_alumno";
 	}
 
 	@PostMapping("/procesarBuscaAlumno")
@@ -85,7 +85,7 @@ public class ControladorAlumnos {
 			
 			
 			
-			return "Detalle_alumno";
+			return "alumno/Detalle_alumno";
 		}
 		
 	}
@@ -104,7 +104,7 @@ public class ControladorAlumnos {
 			model.addAttribute("nombreCompleto", alumno.getNombreCompleto());
 			model.addAttribute("dni", alumno.getDni());
 
-			return "Modificar_alumno";
+			return "alumno/Modificar_alumno";
 		}
 	}
 	
@@ -120,7 +120,7 @@ public class ControladorAlumnos {
 			model.addAttribute("nombreCompleto", nombreCompleto);
 			model.addAttribute("dni", dni);
 			
-			return "Detalle_alumno";
+			return "alumno/Detalle_alumno";
 		}else{
 			model.addAttribute("name", "Autoescuelas Alpine, no existe ese alumno");
 			
@@ -137,13 +137,13 @@ public class ControladorAlumnos {
 
 			model.addAttribute("name", "Autoescuelas Alpine, No existe ese alumno");
 
-			return "Consulta_alumno";
+			return "alumno/Consulta_alumno";
 		}else{
 			model.addAttribute("name", "Autoescuelas Alpine,  Alumno borrado correctamente");
 
 			alumnos.delete(alumno);
 			
-			return "Consulta_alumno";
+			return "alumno/Consulta_alumno";
 		}
 	}
 	

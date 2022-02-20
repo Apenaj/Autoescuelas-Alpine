@@ -30,7 +30,7 @@ public class ControladorCarnet {
 		
 		model.addAttribute("tipo", "");
 		
-		return "Alta_Carnet";
+		return "carnet/Alta_Carnet";
 	}
 	
 	@PostMapping("/procesarAltaCarnet")
@@ -44,13 +44,13 @@ public class ControladorCarnet {
 			
 			
 			
-			return "Detalle_Carnet";
+			return "carnet/Detalle_Carnet";
 		}else{
 			model.addAttribute("name", "Autoescuelas Alpine, Ya existe ese Carnet");
 			
 			model.addAttribute("tipo", tipo);
 			
-			return "Detalle_Carnet";
+			return "carnet/Detalle_Carnet";
 		}
 		
 	}
@@ -59,7 +59,7 @@ public class ControladorCarnet {
 	public String buscaCarnet(Model model) {
 		model.addAttribute("name", "Autoescuelas Alpine, Buscar Carnet");
 		
-		return "Consulta_Carnet";
+		return "carnet/Consulta_Carnet";
 	}
 
 	@PostMapping("/procesarBuscaCarnet")
@@ -70,7 +70,7 @@ public class ControladorCarnet {
 			
 			model.addAttribute("name", "Autoescuelas Alpine, No existe ese Carnet");
 		
-			return "Consulta_Carnet";
+			return "carnet/Consulta_Carnet";
 		}else{
 			Carnet carnet=carnets.getById(tipo);
 			model.addAttribute("name", "Autoescuelas Alpine, Carnet");
@@ -78,7 +78,7 @@ public class ControladorCarnet {
 			model.addAttribute("tipo", carnet.getTipo());
 			
 			
-			return "Detalle_Carnet";
+			return "carnet/Detalle_Carnet";
 		}
 		
 	}
@@ -92,14 +92,14 @@ public class ControladorCarnet {
 
 			model.addAttribute("name", "Autoescuelas Alpine, No existe ese Carnet");
 
-			return "Consulta_Carnet";
+			return "carnet/Consulta_Carnet";
 		}else{
 			Carnet carnet=carnets.getById(tipo);
 			model.addAttribute("name", "Autoescuelas Alpine,  Carnet borrado correctamente");
 
 			carnets.delete(carnet);
 			
-			return "Consulta_Carnet";
+			return "carnet/Consulta_Carnet";
 		}
 	}
 	
