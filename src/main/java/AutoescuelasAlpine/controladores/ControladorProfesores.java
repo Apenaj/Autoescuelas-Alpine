@@ -25,7 +25,7 @@ public class ControladorProfesores {
 
 	
 	@GetMapping("/altaProfesores")
-	public String altaAlumno(Model model) {
+	public String altaProfesores(Model model) {
 		model.addAttribute("name", "Autoescuelas Alpine, Alta nuevo profesor");
 		
 		model.addAttribute("nombreCompleto", "");
@@ -33,9 +33,9 @@ public class ControladorProfesores {
 		
 		return "profesores/Alta_profesor";
 	}
-	/*
-	@PostMapping("/procesarAltaProfesor")
-	public String procesarAltaProfesor(Model model, @RequestParam String nombreCompleto,@RequestParam String dni) {
+
+	@PostMapping("/procesarAltaProfesores")
+	public String procesarAltaProfesores(Model model, @RequestParam String nombreCompleto,@RequestParam String dni) {
 		
 		Profesores profesor=profesores.findByDni(dni);
 		if(profesor==null) {
@@ -47,7 +47,7 @@ public class ControladorProfesores {
 			
 			
 			
-			return "Detalle_profesor";
+			return "profesores/Detalle_profesor";
 		}else{
 			model.addAttribute("name", "Autoescuelas Alpine, Ya existe ese profesor");
 			
@@ -56,27 +56,27 @@ public class ControladorProfesores {
 			
 			
 			
-			return "Detalle_profesor";
+			return "profesores/Detalle_profesor";
 		}
 		
 	}
 	
-	@GetMapping("/buscaProfesor")
-	public String buscaAlumno(Model model) {
+	@GetMapping("/buscaProfesores")
+	public String buscaProfesores(Model model) {
 		model.addAttribute("name", "Autoescuelas Alpine, Buscar profesor");
 		
-		return "Consulta_profesor";
+		return "profesores/Consulta_profesor";
 	}
 
-	@PostMapping("/procesarBuscaProfesor")
-	public String procesarBuscaAlumno(Model model, @RequestParam String dni) {
+	@PostMapping("/procesarBuscaProfesores")
+	public String procesarBuscaProfesores(Model model, @RequestParam String dni) {
 		
 		Profesores profesor=profesores.findByDni(dni);
 		if(profesor==null) {
 			
 			model.addAttribute("name", "Autoescuelas Alpine, No existe ese profesor");
 		
-			return "Consulta_profesor";
+			return "profesores/Consulta_profesor";
 		}else{
 			model.addAttribute("name", "Autoescuelas Alpine, Alumno");
 			
@@ -85,66 +85,67 @@ public class ControladorProfesores {
 			
 			
 			
-			return "Detalle_profesor";
+			return "profesores/Detalle_profesor";
 		}
 		
 	}
 	
-	@GetMapping("/ModificaProfesor")
-	public String modificarAlumno(Model model,@RequestParam String dni) {
+	@GetMapping("/ModificaProfesores")
+	public String modificarProfesores(Model model,@RequestParam String dni) {
 		Profesores profesor=profesores.findByDni(dni);
 		if(profesor==null) {
 
 			model.addAttribute("name", "Autoescuelas Alpine, No existe ese alumno");
 
-			return "Consulta_profesor";
+			return "profesores/Consulta_profesor";
 		}else{
 			model.addAttribute("name", "Autoescuelas Alpine, Modificar alumno");
 
 			model.addAttribute("nombreCompleto", profesor.getNombreCompleto());
 			model.addAttribute("dni", profesor.getDni());
 
-			return "Modificar_profesor";
+			return "profesores/Modificar_profesor";
 		}
 	}
 	
-	@PostMapping("/procesarModificarProfesor")
-	public String procesarModificarAlumno(Model model, @RequestParam String nombreCompleto,@RequestParam String dni) {
+	@PostMapping("/procesarModificarProfesores")
+	public String procesarModificarProfesores(Model model, @RequestParam String nombreCompleto,@RequestParam String dni) {
 		
 		Profesores profesor=profesores.findByDni(dni);
 		if(profesor!=null) {
 			profesor.setNombreCompleto(nombreCompleto);
+			profesor.setDni(dni);
 			profesores.save(profesor);
 			model.addAttribute("name", "Autoescuelas Alpine, Profesor grabado correctamente");
 			
 			model.addAttribute("nombreCompleto", nombreCompleto);
 			model.addAttribute("dni", dni);
 			
-			return "Detalle_profesor";
+			return "profesores/Detalle_profesor";
 		}else{
 			model.addAttribute("name", "Autoescuelas Alpine, no existe ese profesor");
 			
 			
-			return "Consulta_profesor";
+			return "profesores/Consulta_profesor";
 		}
 		
 	}
 	
-	@GetMapping("/borraProfesor")
-	public String borrarAlumno(Model model,@RequestParam String dni) {
+	@GetMapping("/borraProfesores")
+	public String borrarProfesores(Model model,@RequestParam String dni) {
 		Profesores profesor=profesores.findByDni(dni);
 		if(profesor==null) {
 
 			model.addAttribute("name", "Autoescuelas Alpine, No existe ese profesor");
 
-			return "Consulta_profesor";
+			return "profesores/Consulta_profesor";
 		}else{
 			model.addAttribute("name", "Autoescuelas Alpine,  Profesor borrado correctamente");
 
-			examenes.delete(examen);
+			profesores.delete(profesor);
 			
-			return "Consulta_profesor";
+			return "profesores/Consulta_profesor";
 		}
 	}
-	*/
+
 }

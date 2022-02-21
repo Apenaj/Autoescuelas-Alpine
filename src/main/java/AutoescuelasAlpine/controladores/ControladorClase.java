@@ -3,6 +3,7 @@
  */
 package AutoescuelasAlpine.controladores;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,12 +15,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import AutoescuelasAlpine.modelo.Carnet;
 import AutoescuelasAlpine.modelo.Clase;
 import AutoescuelasAlpine.modelo.ClaseRepository;
+import AutoescuelasAlpine.modelo.Profesores;
 
 /**
  * @author ja.conde
- *
+ * @author a.penaj
  */
 @Controller
 public class ControladorClase {
@@ -48,117 +51,102 @@ public class ControladorClase {
 		return "clase/Alta_clase";
 	}
 	
-//	@PostMapping("/procesarAltaClase")
-//	public String procesarAltaClase(Model model, @RequestParam String nombreCompleto,@RequestParam String dni) {
-//		
-//		Clase clase=clases.findByDni(dni);
-//		if(clase==null) {
-//			clases.save(new Clase(nombreCompleto, dni));
-//			model.addAttribute("name", "Autoescuelas Alpine, Nuevo clase grabado correctamente");
-//			
-//			model.addAttribute("nombreCompleto", nombreCompleto);
-//			model.addAttribute("dni", dni);
-//			
-//			
-//			
-//			return "Detalle_clase";
-//		}else{
-//			model.addAttribute("name", "Autoescuelas Alpine, Ya existe ese clase");
-//			
-//			model.addAttribute("nombreCompleto", clase.getNombreCompleto());
-//			model.addAttribute("dni", clase.getDni());
-//			
-//			
-//			
-//			return "Detalle_clase";
-//		}
-//		
-//	}
-//	
-//	@GetMapping("/buscaClase")
-//	public String buscaClase(Model model) {
-//		model.addAttribute("name", "Autoescuelas Alpine, Buscar clase");
-//		
-//		return "Consulta_clase";
-//	}
-//
-//	@PostMapping("/procesarBuscaClase")
-//	public String procesarBuscaClase(Model model, @RequestParam String dni) {
-//		
-//		Clase clase=clases.findByDni(dni);
-//		if(clase==null) {
-//			
-//			model.addAttribute("name", "Autoescuelas Alpine, No existe ese clase");
-//		
-//			return "Consulta_clase";
-//		}else{
-//			model.addAttribute("name", "Autoescuelas Alpine, Clase");
-//			
-//			model.addAttribute("nombreCompleto", clase.getNombreCompleto());
-//			model.addAttribute("dni", clase.getDni());
-//			
-//			
-//			
-//			return "Detalle_clase";
-//		}
-//		
-//	}
-//	
-//	@GetMapping("/ModificaClase")
-//	public String modificarClase(Model model,@RequestParam String dni) {
-//		Clase clase=clases.findByDni(dni);
-//		if(clase==null) {
-//
-//			model.addAttribute("name", "Autoescuelas Alpine, No existe ese clase");
-//
-//			return "Consulta_clase";
-//		}else{
-//			model.addAttribute("name", "Autoescuelas Alpine, Modificar clase");
-//
-//			model.addAttribute("nombreCompleto", clase.getNombreCompleto());
-//			model.addAttribute("dni", clase.getDni());
-//
-//			return "Modificar_clase";
-//		}
-//	}
-//	
-//	@PostMapping("/procesarModificarClase")
-//	public String procesarModificarClase(Model model, @RequestParam String nombreCompleto,@RequestParam String dni) {
-//		
-//		Clase clase=clases.findByDni(dni);
-//		if(clase!=null) {
-//			clase.setNombreCompleto(nombreCompleto);
-//			clases.save(clase);
-//			model.addAttribute("name", "Autoescuelas Alpine, Clase grabado correctamente");
-//			
-//			model.addAttribute("nombreCompleto", nombreCompleto);
-//			model.addAttribute("dni", dni);
-//			
-//			return "Detalle_clase";
-//		}else{
-//			model.addAttribute("name", "Autoescuelas Alpine, no existe ese clase");
-//			
-//			
-//			return "Consulta_clase";
-//		}
-//		
-//	}
-//	
-//	@GetMapping("/borraClase")
-//	public String borrarClase(Model model,@RequestParam String dni) {
-//		Clase clase=clases.findByDni(dni);
-//		if(clase==null) {
-//
-//			model.addAttribute("name", "Autoescuelas Alpine, No existe ese clase");
-//
-//			return "Consulta_clase";
-//		}else{
-//			model.addAttribute("name", "Autoescuelas Alpine,  Clase borrado correctamente");
-//
-//			clases.delete(clase);
-//			
-//			return "Consulta_clase";
-//		}
-//	}
+	@PostMapping("/procesarAltaClase")
+	public String procesarAltaClase(Model model, @RequestParam Timestamp fechaHoraComienzo,@RequestParam Carnet carnet,@RequestParam Profesores profesor) {	
+		clases.save(new Clase(fechaHoraComienzo, carnet,profesor));
+		model.addAttribute("name", "Autoescuelas Alpine, Nuevo clase grabado correctamente");
+		
+		model.addAttribute("fechaHoraComienzo", fechaHoraComienzo);
+		model.addAttribute("carnet", carnet);
+		model.addAttribute("profesor", profesor);	
+			
+		return "clase/Detalle_clase";
+	}
+	
+	@GetMapping("/buscaClase")
+	public String buscaClase(Model model) {
+		model.addAttribute("name", "Autoescuelas Alpine, Buscar clase");
+		
+		return "clase/Consulta_clase";
+	}
+
+	@PostMapping("/procesarBuscaClase")
+	public String procesarBuscaClase(Model model, @RequestParam long id) {
+		
+		Clase clase=clases.getById(id);
+		if(clase==null) {
+			
+			model.addAttribute("name", "Autoescuelas Alpine, No existe esa clase");
+		
+			return "clase/Consulta_clase";
+		}else{
+			model.addAttribute("name", "Autoescuelas Alpine, Alumno");
+			
+			model.addAttribute("fechaHoraComienzo", clase.getFechaHoraComienzo());
+			model.addAttribute("carnet", clase.getCarnet());
+			model.addAttribute("profesor", clase.getProfesor());
+			
+			return "clase/Detalle_clase";
+		}
+	}
+	
+	@GetMapping("/ModificaClase")
+	public String modificarClase(Model model,@RequestParam long id) {
+		Clase clase=clases.getById(id);
+		if(clase==null) {
+
+			model.addAttribute("name", "Autoescuelas Alpine, No existe ese clase");
+
+			return "clase/Consulta_clase";
+		}else{
+			model.addAttribute("name", "Autoescuelas Alpine, Modificar clase");
+			model.addAttribute("fechaHoraComienzo", clase.getFechaHoraComienzo());
+			model.addAttribute("carnet", clase.getCarnet());
+			model.addAttribute("profesor", clase.getProfesor());
+
+			return "clase/Modificar_clase";
+		}
+	}
+	
+	@PostMapping("/procesarModificarClase")
+	public String procesarModificarClase(Model model, @RequestParam Timestamp fechaHoraComienzo,@RequestParam Carnet carnet,@RequestParam Profesores profesor,@RequestParam long id) {
+		
+		Clase clase=clases.getById(id);
+		if(clase!=null) {
+			clase.setFechaHoraComienzo(fechaHoraComienzo);
+			clase.setCarnet(carnet);
+			clase.setProfesor(profesor);
+			clases.save(clase);
+			model.addAttribute("name", "Autoescuelas Alpine, Clase grabada correctamente");
+			
+			model.addAttribute("fechaHoraComienzo", clase.getFechaHoraComienzo());
+			model.addAttribute("carnet", clase.getCarnet());
+			model.addAttribute("profesor", clase.getProfesor());
+			
+			return "clase/Detalle_clase";
+		}else{
+			model.addAttribute("name", "Autoescuelas Alpine, no existe ese clase");
+			
+			
+			return "clase/Consulta_clase";
+		}
+		
+	}
+	
+	@GetMapping("/borraClase")
+	public String borrarClase(Model model,@RequestParam long id) {
+		Clase clase=clases.getById(id);
+		if(clase==null) {
+			model.addAttribute("name", "Autoescuelas Alpine, No existe esa clase");
+
+			return "clase/Consulta_clase";
+		}else{
+			model.addAttribute("name", "Autoescuelas Alpine,  Clase borrada correctamente");
+
+			clases.delete(clase);
+			
+			return "clase/Consulta_clase";
+		}
+	}
 	
 }
