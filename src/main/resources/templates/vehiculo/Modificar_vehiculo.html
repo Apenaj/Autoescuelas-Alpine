@@ -1,0 +1,25 @@
+<html>
+<body>
+<p>Bienvenido a {{name}}</p>
+
+<a href="bienvenida">Bienvenida</a>
+
+<form method="post" action='procesarModificarVehiculo'>
+	
+	
+	<label for="modelo">modelo:</label>
+	<input type="text" name='modelo' value='{{modelo}}'>
+	
+	
+	
+	<label for="matricula">matricula:</label>
+	<input type="text" name='matricula' readonly='readonly' value='{{dni}}'>
+	
+	<label for="dni">dni profesor:</label>
+	<input type="text" name='dni' value='{{dni}}'>
+	
+	<input type="submit" value='grabar'>
+
+</form>
+</body>
+</html>

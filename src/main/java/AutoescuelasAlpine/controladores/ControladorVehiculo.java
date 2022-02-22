@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import AutoescuelasAlpine.modelo.Profesores;
+import AutoescuelasAlpine.modelo.ProfesoresRepository;
 import AutoescuelasAlpine.modelo.Vehiculo;
 import AutoescuelasAlpine.modelo.VehiculoRepository;
 
@@ -23,29 +24,34 @@ public class ControladorVehiculo {
 	
 	@Autowired
 	private VehiculoRepository vehiculos;
-
+	@Autowired
+	private ProfesoresRepository profesores;
 	
 	@GetMapping("/altaVehiculo")
 	public String altaVehiculo(Model model) {
 		model.addAttribute("name", "Autoescuelas Alpine, Alta nuevo vehiculo");
 		
-		model.addAttribute("matricula", "");
-		model.addAttribute("modelo", "");
+		//model.addAttribute("matricula", "");
+		//model.addAttribute("modelo", "");
 		
 		return "vehiculo/Alta_vehiculo";
 	}
 	
 	@PostMapping("/procesarAltaVehiculo")
-	public String procesarAltaVehiculo(Model model, @RequestParam String matricula,@RequestParam String modelo,@RequestParam Profesores profesor) {
+	public String procesarAltaVehiculo(Model model, @RequestParam String matricula,@RequestParam String modelo,@RequestParam String dni) {
 		
-		Vehiculo vehiculo=vehiculos.getById(matricula);
+		Vehiculo vehiculo=vehiculos.findBymatricula(matricula);
 		if(vehiculo==null) {
+			
+			
+			Profesores profesor=profesores.findByDni(dni);
+			
 			vehiculos.save(new Vehiculo(matricula, modelo, profesor));
 			model.addAttribute("name", "Autoescuelas Alpine, Nuevo vehiculo grabado correctamente");
 			
 			model.addAttribute("modelo", modelo);
 			model.addAttribute("matricula", matricula);
-			model.addAttribute("profesor", profesor);
+			model.addAttribute("dni", dni); //1º parametro tiene que estar igual entre corchetes en el detalle_vehiculo que referenica a dni
 			
 			
 			
@@ -84,7 +90,7 @@ public class ControladorVehiculo {
 			
 			model.addAttribute("modelo", vehiculo.getModelo());
 			model.addAttribute("matricula", vehiculo.getMatricula());
-			model.addAttribute("profesor", vehiculo.getProfesor());
+			model.addAttribute("dni", vehiculo.getProfesor().getDni());
 			
 			
 			
@@ -106,24 +112,27 @@ public class ControladorVehiculo {
 
 			model.addAttribute("modelo", vehiculo.getModelo());
 			model.addAttribute("matricula", vehiculo.getMatricula());
-			model.addAttribute("profesor", vehiculo.getProfesor());
+			model.addAttribute("dni", vehiculo.getProfesor().getDni());
 
 			return "vehiculo/Modificar_vehiculo";
 		}
 	}
 	
 	@PostMapping("/procesarModificarVehiculo")
-	public String procesarModificarVehiculo(Model model, @RequestParam String modelo,@RequestParam String matricula) {
+	public String procesarModificarVehiculo(Model model, @RequestParam String modelo,@RequestParam String matricula,@RequestParam String dni) {
 		
 		Vehiculo vehiculo=vehiculos.getById(matricula);
 		if(vehiculo!=null) {
-			vehiculo.setModelo(modelo);
-			vehiculos.save(vehiculo);
+			
+			Profesores profesor=profesores.findByDni(dni);
+			
+			vehiculos.save(new Vehiculo(matricula, modelo, profesor));
+			
 			model.addAttribute("name", "Autoescuelas Alpine, Vehiculo grabado correctamente");
 			
 			model.addAttribute("modelo", vehiculo.getModelo());
 			model.addAttribute("matricula", vehiculo.getMatricula());
-			model.addAttribute("profesor", vehiculo.getProfesor());
+			model.addAttribute("dni", vehiculo.getProfesor().getDni());
 			
 			return "vehiculo/Detalle_vehiculo";
 		}else{

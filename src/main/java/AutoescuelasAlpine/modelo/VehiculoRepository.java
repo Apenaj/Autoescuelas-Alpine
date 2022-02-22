@@ -10,5 +10,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  */
 public interface VehiculoRepository extends JpaRepository<Vehiculo, String> {
-
+	Vehiculo findBymatricula(String matricula);
 }
