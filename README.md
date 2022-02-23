@@ -32,3 +32,10 @@ Vamos a hacer una pagina web para gestionar una autoescuela.
 - Examen
 - Carnet
 - Vehiculo
+
+## Diagrama Entidad Relacion
+![Entidad/Relacion](/Users/alejandropenajimenez/git/AutoescuelasAlpine/img/ER.jpg)
+
+## Diagrama de Navegacion
+![DiagramaNavegacion](/Users/alejandropenajimenez/git/AutoescuelasAlpine/img/diag_nav_autoescuela.png)
+
