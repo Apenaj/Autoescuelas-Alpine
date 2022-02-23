@@ -39,6 +39,9 @@ Vamos a hacer una pagina web para gestionar una autoescuela.
 ## Diagrama de navegacion
 ![DiagramaNavegacion](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/diag_nav_autoescuela.png)
 
+## UML
+![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/UML.jpeg)
+
 ## Capturas de pantalla
 ![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/AltaAlumno.png)
 Da de alta a un alumno
