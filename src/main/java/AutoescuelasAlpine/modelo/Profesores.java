@@ -13,7 +13,6 @@ import javax.persistence.Id;
 @Entity
 public class Profesores {
 	
-	
 	@Id
 	private String dni;
 	private String nombreCompleto;
