@@ -9,35 +9,30 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-
 /**
  * @author ja.conde
- *
+ * @author a.penaj
  */
 @Entity
 public class Alumno {
 	
-	private String nombreCompleto;
-	
 	@Id
 	private String dni;
+	private String nombreCompleto;
 	
 	@ManyToMany
 	private List<Examen> examenes;
 	
-	
 	public Alumno() {
 		super();
 	}
-		
-	
+			
 	public Alumno(String nombreCompleto, String dni) {
 		super();
 		this.nombreCompleto = nombreCompleto;
 		this.dni = dni;
 	}
 
-	
 	public String getNombreCompleto() {
 		return nombreCompleto;
 	}
@@ -51,14 +46,9 @@ public class Alumno {
 		this.dni = dni;
 	}
 
-
-
-
 	@Override
 	public String toString() {
 		return "Alumno [ nombreCompleto=" + nombreCompleto + ", dni=" + dni + "]";
-	}
-	
-	
+	}	
 	
 }
