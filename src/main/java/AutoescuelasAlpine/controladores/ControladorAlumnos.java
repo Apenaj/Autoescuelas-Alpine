@@ -76,7 +76,7 @@ public class ControladorAlumnos {
 			
 			model.addAttribute("name", "Autoescuelas Alpine, No existe ese alumno");
 		
-			return "Consulta_alumno";
+			return "alumno/Consulta_alumno";
 		}else{
 			model.addAttribute("name", "Autoescuelas Alpine, Alumno");
 			
@@ -97,7 +97,7 @@ public class ControladorAlumnos {
 
 			model.addAttribute("name", "Autoescuelas Alpine, No existe ese alumno");
 
-			return "Consulta_alumno";
+			return "alumno/Consulta_alumno";
 		}else{
 			model.addAttribute("name", "Autoescuelas Alpine, Modificar alumno");
 
@@ -125,7 +125,7 @@ public class ControladorAlumnos {
 			model.addAttribute("name", "Autoescuelas Alpine, no existe ese alumno");
 			
 			
-			return "Consulta_alumno";
+			return "alumno/Consulta_alumno";
 		}
 		
 	}

@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 /**
  * @author ja.conde
- *
+ * @author a.penaj
  */
 @Entity
 public class Profesores {

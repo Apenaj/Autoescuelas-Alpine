@@ -45,26 +45,29 @@ public class ControladorVehiculo {
 			
 			
 			Profesores profesor=profesores.findByDni(dni);
-			
-			vehiculos.save(new Vehiculo(matricula, modelo, profesor));
-			model.addAttribute("name", "Autoescuelas Alpine, Nuevo vehiculo grabado correctamente");
-			
-			model.addAttribute("modelo", modelo);
-			model.addAttribute("matricula", matricula);
-			model.addAttribute("dni", dni); //1º parametro tiene que estar igual entre corchetes en el detalle_vehiculo que referenica a dni
-			
-			
-			
-			
-			return "vehiculo/Detalle_vehiculo";
+
+			if(profesor!=null) {
+
+				vehiculos.save(new Vehiculo(matricula, modelo, profesor));
+				model.addAttribute("name", "Autoescuelas Alpine, Nuevo vehiculo grabado correctamente");
+
+				model.addAttribute("modelo", modelo);
+				model.addAttribute("matricula", matricula);
+				model.addAttribute("dni", dni); //1º parametro tiene que estar igual entre corchetes en el detalle_vehiculo que referenica a dni
+
+
+
+
+				return "vehiculo/Detalle_vehiculo";
+			}else {
+				model.addAttribute("name", "Autoescuelas Alpine, no existe ese profesor");
+				
+				return "vehiculo/Alta_vehiculo";
+			}
 		}else{
 			model.addAttribute("name", "Autoescuelas Alpine, Ya existe ese vehiculo");
 			
-			model.addAttribute("modelo", vehiculo.getModelo());
-			model.addAttribute("matricula", vehiculo.getMatricula());
-			model.addAttribute("profesor", vehiculo.getProfesor());
-			
-			return "vehiculo/Detalle_vehiculo";
+			return "vehiculo/Alta_vehiculo";
 		}
 		
 	}
@@ -79,13 +82,15 @@ public class ControladorVehiculo {
 	@PostMapping("/procesarBuscaVehiculo")
 	public String procesarBuscaVehiculo(Model model, @RequestParam String matricula) {
 		
-		Vehiculo vehiculo=vehiculos.getById(matricula);
-		if(vehiculo==null) {
+		
+		if(!vehiculos.existsById(matricula)) {
 			
 			model.addAttribute("name", "Autoescuelas Alpine, No existe ese vehiculo");
 		
 			return "vehiculo/Consulta_vehiculo";
 		}else{
+			
+			Vehiculo vehiculo=vehiculos.getById(matricula);
 			model.addAttribute("name", "Autoescuelas Alpine, Vehiculo");
 			
 			model.addAttribute("modelo", vehiculo.getModelo());
@@ -125,16 +130,27 @@ public class ControladorVehiculo {
 		if(vehiculo!=null) {
 			
 			Profesores profesor=profesores.findByDni(dni);
-			
-			vehiculos.save(new Vehiculo(matricula, modelo, profesor));
-			
-			model.addAttribute("name", "Autoescuelas Alpine, Vehiculo grabado correctamente");
-			
-			model.addAttribute("modelo", vehiculo.getModelo());
-			model.addAttribute("matricula", vehiculo.getMatricula());
-			model.addAttribute("dni", vehiculo.getProfesor().getDni());
-			
-			return "vehiculo/Detalle_vehiculo";
+			if(profesor!=null) {
+				vehiculo = vehiculos.save(new Vehiculo(matricula, modelo, profesor));
+
+				model.addAttribute("name", "Autoescuelas Alpine, Vehiculo grabado correctamente");
+
+				model.addAttribute("modelo", vehiculo.getModelo());
+				model.addAttribute("matricula", vehiculo.getMatricula());
+				model.addAttribute("dni", vehiculo.getProfesor().getDni());
+
+				return "vehiculo/Detalle_vehiculo";
+			}else {
+				model.addAttribute("name", "Autoescuelas Alpine, Vehiculo, no existe ese profesor");
+				
+				model.addAttribute("modelo", vehiculo.getModelo());
+				model.addAttribute("matricula", vehiculo.getMatricula());
+				model.addAttribute("dni", vehiculo.getProfesor().getDni());
+				
+				
+				
+				return "vehiculo/Detalle_vehiculo";
+			}
 		}else{
 			model.addAttribute("name", "Autoescuelas Alpine, no existe ese vehiculo");
 			
