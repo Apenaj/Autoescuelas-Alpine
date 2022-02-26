@@ -4,11 +4,13 @@
 package AutoescuelasAlpine.modelo;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 /**
@@ -31,6 +33,9 @@ public class Clase {
 	
 	@ManyToOne
 	private Profesores profesor;
+	
+	@ManyToMany
+	private List<Alumno> alumnosApuntados;
 
 	public Clase() {
 		super();
@@ -73,7 +78,16 @@ public class Clase {
 
 	public void setProfesor(Profesores profesor) {
 		this.profesor = profesor;
-	} 
+	}
+
+	public List<Alumno> getAlumnosApuntados() {
+		return alumnosApuntados;
+	}
+
+	public void setAlumnosApuntados(List<Alumno> alumnosApuntados) {
+		this.alumnosApuntados = alumnosApuntados;
+	}
+
 	
 	
 }

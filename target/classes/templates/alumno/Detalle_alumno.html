@@ -7,6 +7,30 @@
 	<p>Nombre Completo:{{nombreCompleto}}</p>
 	<p>D.N.I.:{{dni}}</p>
 	
+	{{#siClases}}
+	<p>Lsita de clases reservadas:</p>
+	<table border="1">
+		<thead>
+			<th> Hora de comienzo</th>
+			<th> Carnet</th>
+			<th> Nombre del profresor</th>
+			
+		
+		</thead>
+		
+		{{#clases}}
+		<tr>
+		
+ 			<td>{{fechaHoraComienzo}}</td>
+ 			<td>{{carnet.tipo}}</td>
+ 			<td>{{profesor.nombreCompleto}}</td>
+ 		</tr>
+		
+			
+		{{/clases}}
+	</table>
+	{{/siClases}}
+	
 	<a href="ModificaAlumno?dni={{dni}}">Modificar</a>
 	<a href="borraAlumno?dni={{dni}}">Borrar</a>
 

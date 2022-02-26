@@ -3,6 +3,8 @@
  */
 package AutoescuelasAlpine.controladores;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import AutoescuelasAlpine.modelo.Alumno;
 import AutoescuelasAlpine.modelo.AlumnoRepository;
+import AutoescuelasAlpine.modelo.Clase;
 
 /**
  * @author ja.conde
@@ -45,7 +48,8 @@ public class ControladorAlumnos {
 			model.addAttribute("nombreCompleto", nombreCompleto);
 			model.addAttribute("dni", dni);
 			
-			
+			model.addAttribute("siClases", false);
+			model.addAttribute("clases", new ArrayList<Clase>());
 			
 			return "alumno/Detalle_alumno";
 		}else{
@@ -54,7 +58,8 @@ public class ControladorAlumnos {
 			model.addAttribute("nombreCompleto", alumno.getNombreCompleto());
 			model.addAttribute("dni", alumno.getDni());
 			
-			
+			model.addAttribute("siClases", !alumno.getClasesReservadas().isEmpty());
+			model.addAttribute("clases", alumno.getClasesReservadas());
 			
 			return "alumno/Detalle_alumno";
 		}
@@ -83,7 +88,8 @@ public class ControladorAlumnos {
 			model.addAttribute("nombreCompleto", alumno.getNombreCompleto());
 			model.addAttribute("dni", alumno.getDni());
 			
-			
+			model.addAttribute("siClases", !alumno.getClasesReservadas().isEmpty());
+			model.addAttribute("clases", alumno.getClasesReservadas());
 			
 			return "alumno/Detalle_alumno";
 		}
@@ -119,6 +125,9 @@ public class ControladorAlumnos {
 			
 			model.addAttribute("nombreCompleto", nombreCompleto);
 			model.addAttribute("dni", dni);
+			
+			model.addAttribute("siClases", !alumno.getClasesReservadas().isEmpty());
+			model.addAttribute("clases", alumno.getClasesReservadas());
 			
 			return "alumno/Detalle_alumno";
 		}else{

@@ -5,11 +5,28 @@
 <a href="bienvenida">Bienvenida</a>
 
 	<p>Lsita de clases:</p>
-	<ul>
+	<table border="1">
+		<thead>
+			<th> Detalle</th>
+			<th> Hora de comienzo</th>
+			<th> Carnet</th>
+			<th> Nombre del profresor</th>
+			
+		
+		</thead>
+		
 		{{#clases}}
-			<li><a href='DetalleClase?idClase={{idClase}}'>{{fechaHoraComienzo}};{{carnet}};{{profesor}}</a></li>
+		<tr>
+		
+ 			<td><a href='DetalleClase?idClase={{idClase}}'>{{idClase}}</a></td>
+ 			<td>{{fechaHoraComienzo}}</td>
+ 			<td>{{carnet.tipo}}</td>
+ 			<td>{{profesor.nombreCompleto}}</td>
+ 		</tr>
+		
+			
 		{{/clases}}
-	</ul>
+	</table>
 
 </body>
 </html>

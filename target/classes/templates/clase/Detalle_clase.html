@@ -7,10 +7,34 @@
 	<p>Fecha y hora de comienzo:{{fechaHoraComiezo}}</p>
 	<p>Duracion:{{duracion}}</p>
 	<p>Carnet:{{carnet}}</p>
-	<p>Profesor:{{dniProfesor}}, {{nombreProfesor}}</p>
+	<p>Profesor: dni {{dniProfesor}},Nombre {{nombreProfesor}}</p>
+	
+	{{#siAlumnos}}
+	<p>Lista de Alumnos apuntados:</p>
+	<table border="1">
+		<thead>
+			<th>Nombre</th>
+			<th>Dni</th>
+			
+		
+		</thead>
+		
+		{{#alumnos}}
+		<tr>
+		
+ 			<td>{{nombreCompleto}}</td>
+ 			<td>{{dni}}</td>
+ 		</tr>
+		
+			
+		{{/alumnos}}
+	</table>
+	{{/siAlumnos}}
+	
 	
 	<a href="ModificaClase?idClase={{idClase}}">Modificar</a>
 	<a href="borraClase?idClase={{idClase}}">Borrar</a>
+	<a href="aniadeAlumno?idClase={{idClase}}">Añadir alumno</a>
 
 </body>
 </html>

@@ -23,6 +23,9 @@ public class Alumno {
 	@ManyToMany
 	private List<Examen> examenes;
 	
+	@ManyToMany
+	private List<Clase> clasesReservadas;
+	
 	public Alumno() {
 		super();
 	}
@@ -49,6 +52,16 @@ public class Alumno {
 	@Override
 	public String toString() {
 		return "Alumno [ nombreCompleto=" + nombreCompleto + ", dni=" + dni + "]";
+	}
+
+	public List<Clase> getClasesReservadas() {
+		return clasesReservadas;
+	}
+
+	public void setClasesReservadas(List<Clase> clasesReservadas) {
+		this.clasesReservadas = clasesReservadas;
 	}	
+	
+	
 	
 }

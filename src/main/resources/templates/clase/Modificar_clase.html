@@ -6,11 +6,14 @@
 
 <form method="post" action='procesarModificarClase'>
 	
+	<input type="hidden" name="idClase" value="{{idClase}}">
+	
+	
 	<label for="fecha">Fecha de la clase:</label>
-	<input type="date" name="fecha" min="{{fechaMinima}}"  />
+	<input type="date" name="fecha" min="{{fechaMinima}}" value="{{fechaComienzo}}" />
   
   	<label for="hora">Hora de comienzo:</label>
-  	<input type="time" name="hora" min="{{horaApertura}}" max="{{horaCierre}}" step="{{duracion}}" />
+  	<input type="time" name="hora" min="{{horaApertura}}" max="{{horaCierre}}" step="{{duracion}}" value="{{horaComienzo}}" />
 	
 	<label for="carnet">Carnet:</label>
 	<input type="text" name='carnet' value='{{carnet}}'>

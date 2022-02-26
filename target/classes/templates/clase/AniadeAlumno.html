@@ -1,0 +1,18 @@
+<html>
+<body>
+<p>Bienvenido a {{name}}</p>
+
+<a href="bienvenida">Bienvenida</a>
+
+<form method="post" action='procesarAniadeAlumno'>
+	
+	<input type="hidden" name="idClase" value="{{idClase}}">
+		
+	<label for="dni">D.N.I.:</label>
+	<input type="text" name='dni' value='{{dni}}'>
+	
+	<input type="submit" value='grabar'>
+
+</form>
+</body>
+</html>
