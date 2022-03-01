@@ -29,7 +29,6 @@ Vamos a hacer una pagina web para gestionar una autoescuela.
 - Alumnos
 - Profesores
 - Clase
-- Examen
 - Carnet
 - Vehiculo
 

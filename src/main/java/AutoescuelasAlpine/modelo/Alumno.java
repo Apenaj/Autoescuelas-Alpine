@@ -21,9 +21,6 @@ public class Alumno {
 	private String nombreCompleto;
 	
 	@ManyToMany
-	private List<Examen> examenes;
-	
-	@ManyToMany
 	private List<Clase> clasesReservadas;
 	
 	public Alumno() {

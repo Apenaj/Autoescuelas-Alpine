@@ -18,6 +18,5 @@ public interface ClaseRepository extends JpaRepository<Clase, Long> {
 	List<Clase> findByfechaHoraComienzo(Timestamp fechaHoraComienzo);
 	List<Clase> findBycarnet(Carnet carnet);
 	List<Clase> findByprofesor(Profesores profesor);
-	//Clase findByfechaHoraComienzoAndprofesor(Timestamp fechaHoraComienzo,Profesores profesor);
 	
 }

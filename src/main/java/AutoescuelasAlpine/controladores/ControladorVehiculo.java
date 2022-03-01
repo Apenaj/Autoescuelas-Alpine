@@ -30,10 +30,7 @@ public class ControladorVehiculo {
 	@GetMapping("/altaVehiculo")
 	public String altaVehiculo(Model model) {
 		model.addAttribute("name", "Autoescuelas Alpine, Alta nuevo vehiculo");
-		
-		//model.addAttribute("matricula", "");
-		//model.addAttribute("modelo", "");
-		
+
 		return "vehiculo/Alta_vehiculo";
 	}
 	

@@ -18,8 +18,6 @@ import javax.persistence.ManyToOne;
  *
  */
 @Entity
-//@Table(uniqueConstraints=
-//@UniqueConstraint(columnNames = {"fechaHoraComienzo", "profesor"})) 
 public class Clase {
 
 	@Id
