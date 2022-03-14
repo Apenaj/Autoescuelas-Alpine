@@ -37,10 +37,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/loginerror").permitAll();
 		http.authorizeRequests().antMatchers("/logout").permitAll();
 		// Private pages (all other pages)
-		http.authorizeRequests().anyRequest().authenticated();
+		//http.authorizeRequests().anyRequest().authenticated();
 		//para varios usuarios.
 		//http.authorizeRequests().antMatchers("/private").hasAnyRole("USER");
 		//http.authorizeRequests().antMatchers("/admin").hasAnyRole("ADMIN");
+		//Todo el mundo tiene que loguearse
+		http.authorizeRequests().antMatchers("/a*").hasAnyRole("PROFESOR","ADMIN").antMatchers("/*").authenticated();
+		http.authorizeRequests().antMatchers("/bienvenida").hasAnyRole("ALUMNO").antMatchers("/*").authenticated();
+		
 		// Login form
 		http.formLogin().loginPage("/login");
 		http.formLogin().usernameParameter("username");

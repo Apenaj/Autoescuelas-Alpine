@@ -25,12 +25,15 @@ public class DatabaseUsersLoader {
 
 		List<String> listaRolesAdmin=new ArrayList<String>();
 		List<String> listaRolesUser=new ArrayList<String>();
-		listaRolesAdmin.add("ROLE_USER");
-		listaRolesAdmin.add("ROLE_ADMIN");
-		listaRolesUser.add("ROLE_USER");	 
-
+		List<String> listaRolesProfesor=new ArrayList<String>();
+		listaRolesAdmin.add("ALUMNO");
+		listaRolesAdmin.add("ADMIN");
+		listaRolesUser.add("ALUMNO");	 
+		listaRolesProfesor.add("PROFESOR");
 		userRepository.save(
-				new User("user",passwordEncoder.encode("pass"),listaRolesUser));
+				new User("profesor",passwordEncoder.encode("profesor"),listaRolesProfesor));
+		userRepository.save(
+				new User("alumno",passwordEncoder.encode("alumno"),listaRolesUser));
 		userRepository.save(
 				new User("admin",passwordEncoder.encode("adminpass"),listaRolesAdmin));
 	}
