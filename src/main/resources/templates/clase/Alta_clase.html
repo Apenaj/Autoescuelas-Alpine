@@ -5,7 +5,7 @@
 <a href="bienvenida">Bienvenida</a>
 
 <form method="post" action='procesarAltaClase'>
-	
+	<input type="hidden" name="_csrf" value="{{token}}"/>
 	<label for="fecha">Fecha de la clase:</label>
 	<input type="date" name="fecha" min="{{fechaMinima}}"  />
   

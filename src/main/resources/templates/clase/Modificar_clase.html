@@ -5,7 +5,7 @@
 <a href="bienvenida">Bienvenida</a>
 
 <form method="post" action='procesarModificarClase'>
-	
+	<input type="hidden" name="_csrf" value="{{token}}"/>
 	<input type="hidden" name="idClase" value="{{idClase}}">
 	
 	

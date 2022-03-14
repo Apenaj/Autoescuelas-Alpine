@@ -5,7 +5,7 @@
 <a href="bienvenida">Bienvenida</a>
 
 <form method="post" action='procesarAltaCarnet'>
-	
+	<input type="hidden" name="_csrf" value="{{token}}"/>
 	<label for="tipo">Tipo:</label>
 	<input type="text" name='tipo' value='{{tipo}}'>
 	

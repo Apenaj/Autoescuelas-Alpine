@@ -5,7 +5,7 @@
 <a href="bienvenida">Bienvenida</a>
 
 <form method="post" action='procesarBuscaAlumno'>
-	
+	<input type="hidden" name="_csrf" value="{{token}}"/>
 	
 	<label for="dni">D.N.I.:</label>
 	<input type="text" name='dni' value=''>

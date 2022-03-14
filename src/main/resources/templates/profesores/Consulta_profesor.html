@@ -6,7 +6,7 @@
 
 <form method="post" action='procesarBuscaProfesores'>
 	
-	
+	<input type="hidden" name="_csrf" value="{{token}}"/>
 	<label for="dni">D.N.I.:</label>
 	<input type="text" name='dni' value=''>
 	<input type="submit" value='buscar'>

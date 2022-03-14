@@ -6,7 +6,7 @@
 
 <form method="post" action='procesarBuscaCarnet'>
 	
-	
+	<input type="hidden" name="_csrf" value="{{token}}"/>
 	<label for="tipo">Tipo:</label>
 	<input type="text" name='tipo' value=''>
 	<input type="submit" value='buscar'>
