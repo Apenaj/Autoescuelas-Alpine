@@ -1,9 +1,11 @@
 <html>
 <body>
+<p>Eres el usuario: {{username}}</p>
+<p>Eres profesor:{{profesor}}</p>
+
 <p>Bienvenido a {{name}}</p>
 
 	<a href="bienvenida">Bienvenida</a>
-	
 	<p>Nombre Completo:{{nombreCompleto}}</p>
 	<p>D.N.I.:{{dni}}</p>
 	
@@ -32,7 +34,8 @@
 	{{/siClases}}
 	
 	<a href="ModificaAlumno?dni={{dni}}">Modificar</a>
+	{{^profesor}}
 	<a href="borraAlumno?dni={{dni}}">Borrar</a>
-
+	{{/profesor}}
 </body>
 </html>

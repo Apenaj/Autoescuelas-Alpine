@@ -3,19 +3,21 @@
  */
 package AutoescuelasAlpine.controladores;
 
+import java.security.Principal;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import AutoescuelasAlpine.modelo.Alumno;
 import AutoescuelasAlpine.modelo.AlumnoRepository;
 import AutoescuelasAlpine.modelo.Clase;
-
+import javax.servlet.http.HttpServletRequest;
 /**
  * @author ja.conde
  *
@@ -25,7 +27,23 @@ public class ControladorAlumnos {
 	
 	@Autowired
 	private AlumnoRepository alumnos;
+	
+	@ModelAttribute
+	public void addAttributes(Model model, HttpServletRequest request) {
 
+		Principal principal = request.getUserPrincipal();
+
+		if(principal != null) {
+		
+			//model.addAttribute("logged", true);		
+			model.addAttribute("username", principal.getName());
+			model.addAttribute("profesor", request.isUserInRole("PROFESOR"));
+			
+		} else {
+			model.addAttribute("logged", false);
+			;
+		}
+	}
 	
 	@GetMapping("/altaAlumno")
 	public String altaAlumno(Model model) {
@@ -39,10 +57,10 @@ public class ControladorAlumnos {
 	
 	@PostMapping("/procesarAltaAlumno")
 	public String procesarAltaAlumno(Model model, @RequestParam String nombreCompleto,@RequestParam String dni) {
-		
 		Alumno alumno=alumnos.findByDni(dni);
 		if(alumno==null) {
 			alumnos.save(new Alumno(nombreCompleto, dni));
+			
 			model.addAttribute("name", "Autoescuelas Alpine, Nuevo alumno grabado correctamente");
 			
 			model.addAttribute("nombreCompleto", nombreCompleto);
@@ -53,6 +71,7 @@ public class ControladorAlumnos {
 			
 			return "alumno/Detalle_alumno";
 		}else{
+			
 			model.addAttribute("name", "Autoescuelas Alpine, Ya existe ese alumno");
 			
 			model.addAttribute("nombreCompleto", alumno.getNombreCompleto());

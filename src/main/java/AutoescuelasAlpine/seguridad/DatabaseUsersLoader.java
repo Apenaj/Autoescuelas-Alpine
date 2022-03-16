@@ -26,7 +26,7 @@ public class DatabaseUsersLoader {
 		List<String> listaRolesAdmin=new ArrayList<String>();
 		List<String> listaRolesUser=new ArrayList<String>();
 		List<String> listaRolesProfesor=new ArrayList<String>();
-		listaRolesAdmin.add("ALUMNO");
+		//listaRolesAdmin.add("ALUMNO");
 		listaRolesAdmin.add("ADMIN");
 		listaRolesUser.add("ALUMNO");	 
 		listaRolesProfesor.add("PROFESOR");

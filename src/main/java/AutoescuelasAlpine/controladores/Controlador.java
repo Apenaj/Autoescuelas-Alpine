@@ -20,7 +20,7 @@ public class Controlador {
 	public String bienvenida(Model model, HttpServletRequest request) {
 		model.addAttribute("name", "Autoescuelas Alpine");
 		model.addAttribute("username", request.getUserPrincipal().getName());
-		model.addAttribute("alumno", request.isUserInRole("alumno"));
+		model.addAttribute("alumno", request.isUserInRole("ALUMNO"));
 		return "Pagina_bienvenida";
 	}
 	

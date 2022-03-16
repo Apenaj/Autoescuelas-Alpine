@@ -3,10 +3,15 @@
  */
 package AutoescuelasAlpine.controladores;
 
+import java.security.Principal;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,7 +28,23 @@ public class ControladorCarnet {
 	@Autowired
 	private CarnetRepository carnets;
 
+	@ModelAttribute
 	
+	public void addAttributes(Model model, HttpServletRequest request) {
+
+		Principal principal = request.getUserPrincipal();
+
+		if(principal != null) {
+		
+			//model.addAttribute("logged", true);		
+			model.addAttribute("username", principal.getName());
+			model.addAttribute("profesor", request.isUserInRole("PROFESOR"));
+			
+		} else {
+			model.addAttribute("logged", false);
+			;
+		}
+	}
 	@GetMapping("/altaCarnet")
 	public String altaCarnet(Model model) {
 		model.addAttribute("name", "Autoescuelas Alpine, Alta nuevo Carnet");

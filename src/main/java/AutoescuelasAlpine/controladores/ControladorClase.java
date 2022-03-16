@@ -3,6 +3,7 @@
  */
 package AutoescuelasAlpine.controladores;
 
+import java.security.Principal;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,10 +12,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -47,7 +51,22 @@ public class ControladorClase {
 	public static final String HORA_ULTIMA_CLASE="19:00";
 	public static final String DURACION_CLASE="3600";//DURACION EN SEGUNDOS
 
-	
+	@ModelAttribute
+	public void addAttributes(Model model, HttpServletRequest request) {
+
+		Principal principal = request.getUserPrincipal();
+
+		if(principal != null) {
+		
+			//model.addAttribute("logged", true);		
+			model.addAttribute("username", principal.getName());
+			model.addAttribute("profesor", request.isUserInRole("PROFESOR"));
+			
+		} else {
+			model.addAttribute("logged", false);
+			;
+		}
+	}
 	@GetMapping("/altaClase")
 	public String altaClase(Model model) {
 		model.addAttribute("name", "Autoescuelas Alpine, Alta nuevo clase");

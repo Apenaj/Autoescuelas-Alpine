@@ -1,8 +1,13 @@
 package AutoescuelasAlpine.seguridad;
 
+import java.security.Principal;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -29,4 +34,8 @@ public class WebController {
 	//return "login/home";
 	// return "pagina_bienvenida";
 	//}
+	
+	
+	
+	
 }

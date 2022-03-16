@@ -8,7 +8,8 @@
 	<p>D.N.I.:{{dni}}</p>
 	
 	<a href="ModificaProfesores?dni={{dni}}">Modificar</a>
+	{{^profesor}}
 	<a href="borraProfesores?dni={{dni}}">Borrar</a>
-
+	{{/profesor}}
 </body>
 </html>

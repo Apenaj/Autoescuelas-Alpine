@@ -10,8 +10,9 @@
 	<p>DniProfesor:{{dni}}</p>
 	
 	<a href="ModificaVehiculo?matricula={{matricula}}">Modificar</a>
+	{{^profesor}}
 	<a href="borraVehiculo?matricula={{matricula}}">Borrar</a>
-
+	{{/profesor}}
 
  </body>
 </html>
