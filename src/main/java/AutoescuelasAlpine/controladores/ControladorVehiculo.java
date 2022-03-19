@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import AutoescuelasAlpine.modelo.Profesores;
 import AutoescuelasAlpine.modelo.ProfesoresRepository;
+import AutoescuelasAlpine.modelo.User;
 import AutoescuelasAlpine.modelo.Vehiculo;
 import AutoescuelasAlpine.modelo.VehiculoRepository;
 
@@ -41,7 +42,8 @@ public class ControladorVehiculo {
 		
 			//model.addAttribute("logged", true);		
 			model.addAttribute("username", principal.getName());
-			model.addAttribute("profesor", request.isUserInRole("PROFESOR"));
+			model.addAttribute("profesor", request.isUserInRole(User.ROL_PROFESOR) || request.isUserInRole(User.ROL_ADMIN));
+			model.addAttribute("admin", request.isUserInRole(User.ROL_ADMIN));
 			
 		} else {
 			model.addAttribute("logged", false);

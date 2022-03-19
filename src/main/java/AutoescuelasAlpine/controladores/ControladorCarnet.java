@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import AutoescuelasAlpine.modelo.Carnet;
 import AutoescuelasAlpine.modelo.CarnetRepository;
+import AutoescuelasAlpine.modelo.User;
 
 /**
  * @author ja.conde
@@ -38,7 +39,7 @@ public class ControladorCarnet {
 		
 			//model.addAttribute("logged", true);		
 			model.addAttribute("username", principal.getName());
-			model.addAttribute("profesor", request.isUserInRole("PROFESOR"));
+			model.addAttribute("admin", request.isUserInRole(User.ROL_ADMIN));
 			
 		} else {
 			model.addAttribute("logged", false);

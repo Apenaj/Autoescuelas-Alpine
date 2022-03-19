@@ -6,7 +6,7 @@
 
 <form method="post" action='procesarBuscaVehiculo'>
 	
-	
+	<input type="hidden" name="_csrf" value="{{token}}"/>
 	<label for="matricula">matricula.:</label>
 	<input type="text" name='matricula' value=''>
 	<input type="submit" value='buscar'>

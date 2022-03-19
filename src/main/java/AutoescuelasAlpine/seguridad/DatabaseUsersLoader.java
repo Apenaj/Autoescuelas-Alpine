@@ -24,16 +24,16 @@ public class DatabaseUsersLoader {
 	private void initDatabase() {
 
 		List<String> listaRolesAdmin=new ArrayList<String>();
-		List<String> listaRolesUser=new ArrayList<String>();
-		List<String> listaRolesProfesor=new ArrayList<String>();
+//		List<String> listaRolesUser=new ArrayList<String>();
+//		List<String> listaRolesProfesor=new ArrayList<String>();
 		//listaRolesAdmin.add("ALUMNO");
-		listaRolesAdmin.add("ADMIN");
-		listaRolesUser.add("ALUMNO");	 
-		listaRolesProfesor.add("PROFESOR");
-		userRepository.save(
-				new User("profesor",passwordEncoder.encode("profesor"),listaRolesProfesor));
-		userRepository.save(
-				new User("alumno",passwordEncoder.encode("alumno"),listaRolesUser));
+		listaRolesAdmin.add(User.ROL_ADMIN);
+//		listaRolesUser.add("ALUMNO");	 
+//		listaRolesProfesor.add("PROFESOR");
+//		userRepository.save(
+//				new User("profesor",passwordEncoder.encode("profesor"),listaRolesProfesor));
+//		userRepository.save(
+//				new User("alumno",passwordEncoder.encode("alumno"),listaRolesUser));
 		userRepository.save(
 				new User("admin",passwordEncoder.encode("adminpass"),listaRolesAdmin));
 	}

@@ -30,6 +30,7 @@ import AutoescuelasAlpine.modelo.Clase;
 import AutoescuelasAlpine.modelo.ClaseRepository;
 import AutoescuelasAlpine.modelo.Profesores;
 import AutoescuelasAlpine.modelo.ProfesoresRepository;
+import AutoescuelasAlpine.modelo.User;
 
 /**
  * @author ja.conde
@@ -60,7 +61,8 @@ public class ControladorClase {
 		
 			//model.addAttribute("logged", true);		
 			model.addAttribute("username", principal.getName());
-			model.addAttribute("profesor", request.isUserInRole("PROFESOR"));
+			model.addAttribute("profesor", request.isUserInRole(User.ROL_PROFESOR) || request.isUserInRole(User.ROL_ADMIN));
+			model.addAttribute("admin", request.isUserInRole(User.ROL_ADMIN));
 			
 		} else {
 			model.addAttribute("logged", false);

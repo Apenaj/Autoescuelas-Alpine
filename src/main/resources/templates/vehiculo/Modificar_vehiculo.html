@@ -6,7 +6,7 @@
 
 <form method="post" action='procesarModificarVehiculo'>
 	
-	
+	<input type="hidden" name="_csrf" value="{{token}}"/>
 	<label for="modelo">modelo:</label>
 	<input type="text" name='modelo' value='{{modelo}}'>
 	

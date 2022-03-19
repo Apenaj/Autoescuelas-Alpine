@@ -6,6 +6,7 @@
 
 <form method="post" action='procesarAltaVehiculo'>
 	
+	<input type="hidden" name="_csrf" value="{{token}}"/>
 	<label for="matricula">Numero de matricula:</label>
 	<input type="text" name='matricula' value=''>
 	

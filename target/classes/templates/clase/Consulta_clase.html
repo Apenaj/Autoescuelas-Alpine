@@ -18,7 +18,7 @@
 
 <form method="post" action='procesarBuscaClaseCarnet'>
 	
-	
+	<input type="hidden" name="_csrf" value="{{token}}"/>
 	<label for="carnet">Carnet:</label>
 	<input type="text" name='carnet' value=''>
 	
@@ -28,7 +28,7 @@
 
 <form method="post" action='procesarBuscaClaseProfesor'>
 	
-	
+	<input type="hidden" name="_csrf" value="{{token}}"/>
 	<label for="profesor">Profesor:</label>
 	<input type="text" name='profesor' value=''>
 	

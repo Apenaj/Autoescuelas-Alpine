@@ -32,10 +32,11 @@
 		{{/clases}}
 	</table>
 	{{/siClases}}
-	
+	{{#profesor}}
 	<a href="ModificaAlumno?dni={{dni}}">Modificar</a>
-	{{^profesor}}
-	<a href="borraAlumno?dni={{dni}}">Borrar</a>
 	{{/profesor}}
+	{{#admin}}
+	<a href="borraAlumno?dni={{dni}}">Borrar</a>
+	{{/admin}}
 </body>
 </html>

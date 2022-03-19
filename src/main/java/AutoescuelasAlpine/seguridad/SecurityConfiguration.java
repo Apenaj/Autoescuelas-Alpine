@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import AutoescuelasAlpine.modelo.User;
+
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -37,14 +39,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/loginerror").permitAll();
 		http.authorizeRequests().antMatchers("/logout").permitAll();
 		// Private pages (all other pages)
-		//http.authorizeRequests().anyRequest().authenticated();
+		
 		//para varios usuarios.
 		//http.authorizeRequests().antMatchers("/private").hasAnyRole("USER");
 		//http.authorizeRequests().antMatchers("/admin").hasAnyRole("ADMIN");
 		//Todo el mundo tiene que loguearse
-		http.authorizeRequests().antMatchers("/a*").hasAnyRole("PROFESOR","ADMIN").antMatchers("/*").authenticated();
+		http.authorizeRequests().antMatchers("/bienvenida").hasAnyRole(User.ROL_ADMIN,User.ROL_PROFESOR,User.ROL_ALUMNO);
+		http.authorizeRequests().antMatchers("/alta*").hasAnyRole(User.ROL_ADMIN,User.ROL_PROFESOR);
+		http.authorizeRequests().antMatchers("/procesarAlta*").hasAnyRole(User.ROL_ADMIN,User.ROL_PROFESOR);
+		http.authorizeRequests().antMatchers("/Modifica*").hasAnyRole(User.ROL_ADMIN,User.ROL_PROFESOR);
+		http.authorizeRequests().antMatchers("/procesarModificar*").hasAnyRole(User.ROL_ADMIN,User.ROL_PROFESOR);
+		http.authorizeRequests().antMatchers("/borra*").hasAnyRole(User.ROL_ADMIN);
 		//http.authorizeRequests().antMatchers("/Pagina_bienvenida").hasAnyRole("ALUMNO").antMatchers("/*").authenticated();
-		
+		http.authorizeRequests().anyRequest().authenticated();
 		// Login form
 		http.formLogin().loginPage("/login");
 		http.formLogin().usernameParameter("username");
@@ -57,6 +64,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 		// Disable CSRF at the moment
 		//http.csrf().disable();
+		//testing api with crsf
+		//http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+	
 	}
 
 }

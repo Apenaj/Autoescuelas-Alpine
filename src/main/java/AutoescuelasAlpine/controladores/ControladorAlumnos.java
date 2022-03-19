@@ -5,8 +5,10 @@ package AutoescuelasAlpine.controladores;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import AutoescuelasAlpine.modelo.Alumno;
 import AutoescuelasAlpine.modelo.AlumnoRepository;
 import AutoescuelasAlpine.modelo.Clase;
+import AutoescuelasAlpine.modelo.User;
+import AutoescuelasAlpine.modelo.UserRepository;
+
 import javax.servlet.http.HttpServletRequest;
 /**
  * @author ja.conde
@@ -28,6 +33,12 @@ public class ControladorAlumnos {
 	@Autowired
 	private AlumnoRepository alumnos;
 	
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
 
@@ -37,7 +48,8 @@ public class ControladorAlumnos {
 		
 			//model.addAttribute("logged", true);		
 			model.addAttribute("username", principal.getName());
-			model.addAttribute("profesor", request.isUserInRole("PROFESOR"));
+			model.addAttribute("profesor", request.isUserInRole(User.ROL_PROFESOR) || request.isUserInRole(User.ROL_ADMIN));
+			model.addAttribute("admin", request.isUserInRole(User.ROL_ADMIN));
 			
 		} else {
 			model.addAttribute("logged", false);
@@ -51,15 +63,21 @@ public class ControladorAlumnos {
 		
 		model.addAttribute("nombreCompleto", "");
 		model.addAttribute("dni", "");
+		model.addAttribute("password", "");
 		
 		return "alumno/Alta_alumno";
 	}
 	
 	@PostMapping("/procesarAltaAlumno")
-	public String procesarAltaAlumno(Model model, @RequestParam String nombreCompleto,@RequestParam String dni) {
+	public String procesarAltaAlumno(Model model, @RequestParam String nombreCompleto,@RequestParam String dni,@RequestParam String password) {
 		Alumno alumno=alumnos.findByDni(dni);
-		if(alumno==null) {
+		User usuario=userRepository.findByname(dni);
+		if(alumno==null && usuario==null) {
 			alumnos.save(new Alumno(nombreCompleto, dni));
+			List<String> listaRolesUser=new ArrayList<String>();
+			listaRolesUser.add(User.ROL_ALUMNO);	 
+			userRepository.save(
+					new User(dni,passwordEncoder.encode(password),listaRolesUser));
 			
 			model.addAttribute("name", "Autoescuelas Alpine, Nuevo alumno grabado correctamente");
 			
@@ -71,8 +89,11 @@ public class ControladorAlumnos {
 			
 			return "alumno/Detalle_alumno";
 		}else{
-			
-			model.addAttribute("name", "Autoescuelas Alpine, Ya existe ese alumno");
+			if(alumno==null) {
+				model.addAttribute("name", "Autoescuelas Alpine, Ya existe ese alumno");
+			}else {
+				model.addAttribute("name", "Autoescuelas Alpine, Ya existe un profesor con ese dni, no puede ser alumno");
+			}
 			
 			model.addAttribute("nombreCompleto", alumno.getNombreCompleto());
 			model.addAttribute("dni", alumno.getDni());
@@ -168,8 +189,9 @@ public class ControladorAlumnos {
 			return "alumno/Consulta_alumno";
 		}else{
 			model.addAttribute("name", "Autoescuelas Alpine,  Alumno borrado correctamente");
-
+			
 			alumnos.delete(alumno);
+			userRepository.delete(userRepository.findByname(dni));
 			
 			return "alumno/Consulta_alumno";
 		}

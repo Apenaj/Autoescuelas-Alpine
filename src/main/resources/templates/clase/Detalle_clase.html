@@ -31,11 +31,12 @@
 	</table>
 	{{/siAlumnos}}
 	
-	
+	{{#profesor}}
 	<a href="ModificaClase?idClase={{idClase}}">Modificar</a>
-	{{^profesor}}
-	<a href="borraClase?idClase={{idClase}}">Borrar</a>
 	{{/profesor}}
+	{{#admin}}
+	<a href="borraClase?idClase={{idClase}}">Borrar</a>
+	{{/admin}}
 	<a href="aniadeAlumno?idClase={{idClase}}">Añadir alumno</a>
 
 </body>

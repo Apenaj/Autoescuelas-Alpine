@@ -6,10 +6,11 @@
 	
 	<p>Nombre Completo:{{nombreCompleto}}</p>
 	<p>D.N.I.:{{dni}}</p>
-	
+	{{#profesor}}
 	<a href="ModificaProfesores?dni={{dni}}">Modificar</a>
-	{{^profesor}}
-	<a href="borraProfesores?dni={{dni}}">Borrar</a>
 	{{/profesor}}
+	{{#admin}}
+	<a href="borraProfesores?dni={{dni}}">Borrar</a>
+	{{/admin}}
 </body>
 </html>

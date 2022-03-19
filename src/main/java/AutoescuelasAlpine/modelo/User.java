@@ -12,6 +12,10 @@ import javax.persistence.Id;
 
 @Entity
 public class User {
+	
+	public static final String ROL_ALUMNO="ALUMNO";
+	public static final String ROL_PROFESOR="PROFESOR";
+	public static final String ROL_ADMIN="ADMIN";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

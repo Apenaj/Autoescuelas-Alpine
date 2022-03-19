@@ -8,11 +8,12 @@
 	<p>Modelo:{{modelo}}</p>
 	<p>matricula:{{matricula}}</p>
 	<p>DniProfesor:{{dni}}</p>
-	
+	{{#profesor}}
 	<a href="ModificaVehiculo?matricula={{matricula}}">Modificar</a>
-	{{^profesor}}
-	<a href="borraVehiculo?matricula={{matricula}}">Borrar</a>
 	{{/profesor}}
+	{{#admin}}
+	<a href="borraVehiculo?matricula={{matricula}}">Borrar</a>
+	{{/admin}}
 
  </body>
 </html>
