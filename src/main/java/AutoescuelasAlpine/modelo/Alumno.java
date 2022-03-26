@@ -19,6 +19,7 @@ public class Alumno {
 	@Id
 	private String dni;
 	private String nombreCompleto;
+	private String email;
 	
 	@ManyToMany
 	private List<Clase> clasesReservadas;
@@ -27,10 +28,11 @@ public class Alumno {
 		super();
 	}
 			
-	public Alumno(String nombreCompleto, String dni) {
+	public Alumno(String nombreCompleto, String dni,String email) {
 		super();
 		this.nombreCompleto = nombreCompleto;
 		this.dni = dni;
+		this.email = email;
 	}
 
 	public String getNombreCompleto() {
@@ -44,6 +46,16 @@ public class Alumno {
 	}
 	public void setDni(String dni) {
 		this.dni = dni;
+	}
+	
+	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override

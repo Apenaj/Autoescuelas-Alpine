@@ -57,5 +57,11 @@
 		<input type="hidden" name="_csrf" value="{{token}}"/>
 		<input type="submit" value="Sign Out" />
 	</form>
+	{{#admin}}
+	<form action="/pruebaSI" method="post">
+		<input type="hidden" name="_csrf" value="{{token}}"/>
+		<input type="submit" value="Prueba S.I." />
+	</form>
+	{{/admin}}
 </body>
 </html>

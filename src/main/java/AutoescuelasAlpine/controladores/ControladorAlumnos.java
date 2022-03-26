@@ -21,6 +21,7 @@ import AutoescuelasAlpine.modelo.AlumnoRepository;
 import AutoescuelasAlpine.modelo.Clase;
 import AutoescuelasAlpine.modelo.User;
 import AutoescuelasAlpine.modelo.UserRepository;
+import AutoescuelasAlpine.servicioInterno.NotificacionService;
 
 import javax.servlet.http.HttpServletRequest;
 /**
@@ -64,25 +65,37 @@ public class ControladorAlumnos {
 		model.addAttribute("nombreCompleto", "");
 		model.addAttribute("dni", "");
 		model.addAttribute("password", "");
+		model.addAttribute("email", "");
 		
 		return "alumno/Alta_alumno";
 	}
 	
 	@PostMapping("/procesarAltaAlumno")
-	public String procesarAltaAlumno(Model model, @RequestParam String nombreCompleto,@RequestParam String dni,@RequestParam String password) {
+	public String procesarAltaAlumno(Model model, @RequestParam String nombreCompleto,@RequestParam String dni,@RequestParam String password,@RequestParam String email) {
 		Alumno alumno=alumnos.findByDni(dni);
 		User usuario=userRepository.findByname(dni);
 		if(alumno==null && usuario==null) {
-			alumnos.save(new Alumno(nombreCompleto, dni));
+			alumnos.save(new Alumno(nombreCompleto, dni,email));
+			String mensaje="Se ha dado de alta en la Autoescuela Alpine, estos son sus datos para entrar:";
+			mensaje=mensaje+"</br>usuario:"+dni;
+			mensaje=mensaje+"</br>password:"+password;
+			mensaje=mensaje+"</br> Un saludo.";
+			String respMensaje;
+			if(NotificacionService.enviarNotificacion(email, mensaje)) {
+				respMensaje="Correo enviado correctamente";
+			}else {
+				respMensaje="Error al enviar el correo.";
+			}
 			List<String> listaRolesUser=new ArrayList<String>();
 			listaRolesUser.add(User.ROL_ALUMNO);	 
 			userRepository.save(
 					new User(dni,passwordEncoder.encode(password),listaRolesUser));
 			
-			model.addAttribute("name", "Autoescuelas Alpine, Nuevo alumno grabado correctamente");
+			model.addAttribute("name", "Autoescuelas Alpine, Nuevo alumno grabado correctamente,"+respMensaje);
 			
 			model.addAttribute("nombreCompleto", nombreCompleto);
 			model.addAttribute("dni", dni);
+			model.addAttribute("email", email);
 			
 			model.addAttribute("siClases", false);
 			model.addAttribute("clases", new ArrayList<Clase>());
@@ -97,6 +110,7 @@ public class ControladorAlumnos {
 			
 			model.addAttribute("nombreCompleto", alumno.getNombreCompleto());
 			model.addAttribute("dni", alumno.getDni());
+			model.addAttribute("email", email);
 			
 			model.addAttribute("siClases", !alumno.getClasesReservadas().isEmpty());
 			model.addAttribute("clases", alumno.getClasesReservadas());
@@ -127,6 +141,7 @@ public class ControladorAlumnos {
 			
 			model.addAttribute("nombreCompleto", alumno.getNombreCompleto());
 			model.addAttribute("dni", alumno.getDni());
+			model.addAttribute("email", alumno.getEmail());
 			
 			model.addAttribute("siClases", !alumno.getClasesReservadas().isEmpty());
 			model.addAttribute("clases", alumno.getClasesReservadas());
@@ -149,22 +164,25 @@ public class ControladorAlumnos {
 
 			model.addAttribute("nombreCompleto", alumno.getNombreCompleto());
 			model.addAttribute("dni", alumno.getDni());
+			model.addAttribute("email", alumno.getEmail());
 
 			return "alumno/Modificar_alumno";
 		}
 	}
 	
 	@PostMapping("/procesarModificarAlumno")
-	public String procesarModificarAlumno(Model model, @RequestParam String nombreCompleto,@RequestParam String dni) {
+	public String procesarModificarAlumno(Model model, @RequestParam String nombreCompleto,@RequestParam String dni,@RequestParam String email) {
 		
 		Alumno alumno=alumnos.findByDni(dni);
 		if(alumno!=null) {
 			alumno.setNombreCompleto(nombreCompleto);
+			alumno.setEmail(email);
 			alumnos.save(alumno);
 			model.addAttribute("name", "Autoescuelas Alpine, Alumno grabado correctamente");
 			
 			model.addAttribute("nombreCompleto", nombreCompleto);
 			model.addAttribute("dni", dni);
+			model.addAttribute("email", alumno.getEmail());
 			
 			model.addAttribute("siClases", !alumno.getClasesReservadas().isEmpty());
 			model.addAttribute("clases", alumno.getClasesReservadas());

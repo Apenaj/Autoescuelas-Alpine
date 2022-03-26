@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import AutoescuelasAlpine.modelo.User;
+import AutoescuelasAlpine.servicioInterno.NotificacionService;
 
 /**
  * @author ja.conde
@@ -24,6 +26,19 @@ public class Controlador {
 		model.addAttribute("username", request.getUserPrincipal().getName());
 		model.addAttribute("rol", getRol(request));
 		model.addAttribute("alumno", request.isUserInRole(User.ROL_ALUMNO));
+		model.addAttribute("admin", request.isUserInRole(User.ROL_ADMIN));
+		return "Pagina_bienvenida";
+	}
+	
+	
+	@PostMapping("/pruebaSI")
+	public String pruebaServInter(Model model, HttpServletRequest request) {
+		NotificacionService.enviarNotificacion("alpinedad2022@gmail.com" , "Esto es una prueba");
+		model.addAttribute("name", "Autoescuelas Alpine");
+		model.addAttribute("username", request.getUserPrincipal().getName());
+		model.addAttribute("rol", getRol(request));
+		model.addAttribute("alumno", request.isUserInRole(User.ROL_ALUMNO));
+		model.addAttribute("admin", request.isUserInRole(User.ROL_ADMIN));
 		return "Pagina_bienvenida";
 	}
 	
