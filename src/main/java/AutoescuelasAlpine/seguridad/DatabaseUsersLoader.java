@@ -34,8 +34,11 @@ public class DatabaseUsersLoader {
 //				new User("profesor",passwordEncoder.encode("profesor"),listaRolesProfesor));
 //		userRepository.save(
 //				new User("alumno",passwordEncoder.encode("alumno"),listaRolesUser));
-		userRepository.save(
-				new User("admin",passwordEncoder.encode("adminpass"),listaRolesAdmin));
+		User admin=userRepository.findByname("admin");
+		if(admin==null) {
+			userRepository.save(
+					new User("admin",passwordEncoder.encode("adminpass"),listaRolesAdmin));
+		}
 	}
 }
 

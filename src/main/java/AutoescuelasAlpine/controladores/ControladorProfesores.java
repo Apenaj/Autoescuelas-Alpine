@@ -123,7 +123,7 @@ public class ControladorProfesores {
 		
 			return "profesores/Consulta_profesor";
 		}else{
-			model.addAttribute("name", "Autoescuelas Alpine, Alumno");
+			model.addAttribute("name", "Autoescuelas Alpine, Profesor");
 			
 			model.addAttribute("nombreCompleto", profesor.getNombreCompleto());
 			model.addAttribute("dni", profesor.getDni());
