@@ -33,7 +33,7 @@ Vamos a hacer una pagina web para gestionar una autoescuela.
 - Vehiculo
 
 ## Diagrama Entidad Relacion
-![Entidad/Relacion](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/ER.png)
+![E/R](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/ER.png)
 
 ## Diagrama de navegacion
 ![DiagramaNavegacion](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/diag_nav_autoescuela.png)
