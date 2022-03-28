@@ -52,7 +52,7 @@ Los 2 archivos jar de la aplicación,servidor y servicio interno compilados desd
 
 Como instalar los componentes si no se tiene instalado mysql server y java.
 
-###Mysql server
+### Mysql server
 
 - Abrimos el terminal de ubuntu(boton derecho raton→terminal.)
 
@@ -88,7 +88,7 @@ SELECT user,authentication_string,plugin,host FROM mysql.user;
 exit
 ~~~
 
-###JAVA
+### JAVA
 
 - Actualizamos los paquetes:
 
@@ -118,7 +118,7 @@ CREATE DATABASE autoescuelaalpine;
 exit
 ~~~
 
-###Ejecucion final
+### Ejecucion final
 
 Una vez completado lo anterior se recomienda abrirse un editor de texto y crearse un archivo con autoescuelaalpine.sh con el siguiente contenido:
 
