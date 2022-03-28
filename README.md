@@ -135,8 +135,10 @@ Una vez completado lo anterior se recomienda abrirse un editor de texto y crears
 De esta manera para ejecutar la app bastaria con hacer ./autoescuelaalpine.sh si diese error de permiso denegado se le puede dar permisos usando el commando “chmod ugo+rwx autoescuelaalpine.sh” al archivo, el .sh debe estar en el mismo directorio que los .jar y ejecutarse desde ese directorio.
 
 ## Capturas de pantalla
+![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/Principal.png)
+Pagina principal una vez iniciamos sesion
 ![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/AltaAlumno.png)
-Da de alta a un alumno
+Da de alta a un alumno, se enviara un correo de notificacion al usuario cuando se registre
 ![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/BusquedaAlumno.png)
 Busca un alumno por su D.N.I y muestra los datos
 ![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/AltaCarnet.png)
@@ -145,6 +147,8 @@ Añade un carnet especificando el tipo de carnet
 Busca si existe un tipo de carnet
 ![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/AltaClase.png)
 Añade una nueva clase teorica
+![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/BusquedaClase.png)
+Busca una clase ya existente
 ![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/AltaProfesores.png)
 Da de alta un profesor
 ![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/BuscaProfesores.png)
