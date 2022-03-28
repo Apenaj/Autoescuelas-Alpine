@@ -135,8 +135,11 @@ Una vez completado lo anterior se recomienda abrirse un editor de texto y crears
 De esta manera para ejecutar la app bastaria con hacer ./autoescuelaalpine.sh si diese error de permiso denegado se le puede dar permisos usando el commando “chmod ugo+rwx autoescuelaalpine.sh” al archivo, el .sh debe estar en el mismo directorio que los .jar y ejecutarse desde ese directorio.
 
 ## Capturas de pantalla
+
+![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/Login.png)
+Login
 ![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/Principal.png)
-Pagina principal una vez iniciamos sesion
+Página principal una vez iniciamos sesión
 ![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/AltaAlumno.png)
 Da de alta a un alumno, se enviara un correo de notificacion al usuario cuando se registre
 ![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/BusquedaAlumno.png)
