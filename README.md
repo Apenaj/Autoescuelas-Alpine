@@ -41,6 +41,99 @@ Vamos a hacer una pagina web para gestionar una autoescuela.
 ## UML
 ![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/uml.png)
 
+## Instrucciones de instalacion en VM
+Requerimientos preinstalacion:
+Se presume que el sistema operativo ya esta instalado con virtualbox.
+
+Mysql server
+JAVA
+
+Los 2 archivos jar de la aplicación,servidor y servicio interno compilados desde spring boot  (run as mavel desde el boton derecho del raton encima de cada proyecto)
+
+Como instalar los componentes si no se tiene instalado mysql server y java.
+
+###Mysql server
+
+- Abrimos el terminal de ubuntu(boton derecho raton→terminal.)
+
+- Actualizamos los paquetes: 
+
+~~~
+sudo apt update
+~~~
+
+- Instalamos mysql server:
+
+~~~
+sudo apt install mysql-server
+~~~
+
+- Configuramos mysql server:
+
+~~~
+sudo mysql_secure_installation
+~~~
+1º pregunta [intro]
+2º pregunta contraseña=”root”(sin las comillas).
+3º pregunta y siguientes [intro].
+
+-Cambiamos el metodo de auntenticacion  de root:
+
+~~~
+sudo mysql
+SELECT user,authentication_string,plugin,host FROM mysql.user;
+ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'root';
+FLUSH PRIVILEGES;
+SELECT user,authentication_string,plugin,host FROM mysql.user;
+exit
+~~~
+
+###JAVA
+
+- Actualizamos los paquetes:
+
+~~~
+sudo apt update
+~~~
+
+- Instalamos java:
+
+~~~
+sudo apt install default-jre
+~~~
+
+- Verificamos la version de la instalación:
+
+~~~
+java -version
+~~~
+
+- Completando la instalación.
+
+Estos pasos solo debe completarse la primera vez una vez se tiene instalado mysql y java:
+
+~~~
+mysql -h localhost -u root -p (introducimos root de contraseña).
+CREATE DATABASE autoescuelaalpine;
+exit
+~~~
+
+###Ejecucion final
+
+Una vez completado lo anterior se recomienda abrirse un editor de texto y crearse un archivo con autoescuelaalpine.sh con el siguiente contenido:
+
+
+~~~
+
+ #!/bin/bash
+ #_*_ENCODING: UTF-8 _*_
+
+ java-jar Inicio-Alpine-0.0.1-SNAPSHOT.jar & java-jar serviciointerno-0.0.1-SNAPSHOT.jar
+
+~~~
+
+De esta manera para ejecutar la app bastaria con hacer ./autoescuelaalpine.sh si diese error de permiso denegado se le puede dar permisos usando el commando “chmod ugo+rwx autoescuelaalpine.sh” al archivo, el .sh debe estar en el mismo directorio que los .jar y ejecutarse desde ese directorio.
+
 ## Capturas de pantalla
 ![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/AltaAlumno.png)
 Da de alta a un alumno
@@ -60,4 +153,5 @@ Busca un profesor por su D.N.I y muestra los datos
 Añade un nuevo vehiculo 
 ![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/BuscaVehiculo.png)
 Busca un vehiculo por su matricula y muestra los datos
+
 
