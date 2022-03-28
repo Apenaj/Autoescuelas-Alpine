@@ -38,8 +38,8 @@ Vamos a hacer una pagina web para gestionar una autoescuela.
 ## Diagrama de navegacion
 ![DiagramaNavegacion](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/diag_nav_autoescuela.png)
 
-## UML
-![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/uml.png)
+## Diagrama de clases
+![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/DiagramaClases.png)
 
 ## Instrucciones de instalacion en VM
 Requerimientos preinstalacion:
@@ -73,11 +73,11 @@ sudo apt install mysql-server
 ~~~
 sudo mysql_secure_installation
 ~~~
-1º pregunta [intro]
-2º pregunta contraseña=”root”(sin las comillas).
-3º pregunta y siguientes [intro].
+- 1º pregunta [intro]
+- 2º pregunta contraseña=”root”(sin las comillas).
+- 3º pregunta y siguientes [intro].
 
--Cambiamos el metodo de auntenticacion  de root:
+- Cambiamos el metodo de auntenticacion  de root:
 
 ~~~
 sudo mysql
@@ -133,6 +133,8 @@ Una vez completado lo anterior se recomienda abrirse un editor de texto y crears
 ~~~
 
 De esta manera para ejecutar la app bastaria con hacer ./autoescuelaalpine.sh si diese error de permiso denegado se le puede dar permisos usando el commando “chmod ugo+rwx autoescuelaalpine.sh” al archivo, el .sh debe estar en el mismo directorio que los .jar y ejecutarse desde ese directorio.
+
+Para acceder a la web abrimos el navegador con la direccion https://localhost:8443/
 
 ## Capturas de pantalla
 
