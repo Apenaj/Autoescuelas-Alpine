@@ -38,6 +38,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/login").permitAll();
 		http.authorizeRequests().antMatchers("/loginerror").permitAll();
 		http.authorizeRequests().antMatchers("/logout").permitAll();
+		http.authorizeRequests().antMatchers("/Contacto").permitAll();
+		http.authorizeRequests().antMatchers("/Requerimiento").permitAll();
 		// Private pages (all other pages)
 		
 		//para varios usuarios.
