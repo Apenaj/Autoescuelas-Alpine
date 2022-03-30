@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import AutoescuelasAlpine.modelo.Alumno;
 import AutoescuelasAlpine.modelo.AlumnoRepository;
 import AutoescuelasAlpine.modelo.Clase;
+import AutoescuelasAlpine.modelo.Profesores;
+import AutoescuelasAlpine.modelo.ProfesoresRepository;
 import AutoescuelasAlpine.modelo.User;
 import AutoescuelasAlpine.modelo.UserRepository;
 import AutoescuelasAlpine.servicioInterno.NotificacionService;
@@ -30,6 +32,9 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 public class ControladorAlumnos {
+	
+	@Autowired
+	private ProfesoresRepository profesores;
 	
 	@Autowired
 	private AlumnoRepository alumnos;
@@ -103,17 +108,26 @@ public class ControladorAlumnos {
 			return "alumno/Detalle_alumno";
 		}else{
 			if(alumno==null) {
-				model.addAttribute("name", "Autoescuelas Alpine, Ya existe ese alumno");
+				model.addAttribute("name", "Autoescuelas Alpine, Ya existe un profesor con ese dni no se puede dar de alta al alumno");
+				Profesores profesor=profesores.findByDni(dni);
+				model.addAttribute("nombreCompleto", profesor.getNombreCompleto());
+				model.addAttribute("dni", profesor.getDni());
+				model.addAttribute("email", email);
+				
+				model.addAttribute("siClases", null);
+				model.addAttribute("clases", null);
+				
 			}else {
-				model.addAttribute("name", "Autoescuelas Alpine, Ya existe un profesor con ese dni, no puede ser alumno");
+				model.addAttribute("name", "Autoescuelas Alpine, Ya existe un alumno  con ese dni, no se puede dar de alta al  alumno");
+				model.addAttribute("nombreCompleto", alumno.getNombreCompleto());
+				model.addAttribute("dni", alumno.getDni());
+				model.addAttribute("email", email);
+				
+				model.addAttribute("siClases", !alumno.getClasesReservadas().isEmpty());
+				model.addAttribute("clases", alumno.getClasesReservadas());
 			}
 			
-			model.addAttribute("nombreCompleto", alumno.getNombreCompleto());
-			model.addAttribute("dni", alumno.getDni());
-			model.addAttribute("email", email);
 			
-			model.addAttribute("siClases", !alumno.getClasesReservadas().isEmpty());
-			model.addAttribute("clases", alumno.getClasesReservadas());
 			
 			return "alumno/Detalle_alumno";
 		}

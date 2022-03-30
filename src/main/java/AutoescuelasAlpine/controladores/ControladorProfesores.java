@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import AutoescuelasAlpine.modelo.Alumno;
+import AutoescuelasAlpine.modelo.AlumnoRepository;
 import AutoescuelasAlpine.modelo.Profesores;
 import AutoescuelasAlpine.modelo.ProfesoresRepository;
 import AutoescuelasAlpine.modelo.User;
@@ -29,6 +31,9 @@ import AutoescuelasAlpine.modelo.UserRepository;
  */
 @Controller
 public class ControladorProfesores {
+	
+	@Autowired
+	private AlumnoRepository alumnos;
 	
 	@Autowired
 	private ProfesoresRepository profesores;
@@ -90,15 +95,24 @@ public class ControladorProfesores {
 			
 			return "profesores/Detalle_profesor";
 		}else{
+			//si uno de los 2 usuario o profesor existen.
 			if(profesor==null) {
-				model.addAttribute("name", "Autoescuelas Alpine, Ya existe ese profesor");
+				model.addAttribute("name", "Autoescuelas Alpine, Ya existe un alumno con ese dni no se puede dar de alta al profesor");
+				Alumno alumno=alumnos.findByDni(dni);
+				model.addAttribute("nombreCompleto", alumno.getNombreCompleto());
+				model.addAttribute("dni", alumno.getDni());
 			}else {
-				model.addAttribute("name", "Autoescuelas Alpine, Ya existe un alumno con ese dni no puede ser profesor");
+				model.addAttribute("name", "Autoescuelas Alpine, Ya existe un profesor con ese dni no puede darse de alta al profesor");
+				model.addAttribute("nombreCompleto", profesor.getNombreCompleto());
+				model.addAttribute("dni", profesor.getDni());
 			}
 			
-			model.addAttribute("nombreCompleto", profesor.getNombreCompleto());
-			model.addAttribute("dni", profesor.getDni());
+				
 			
+				
+			
+				
+	
 			
 			
 			return "profesores/Detalle_profesor";
@@ -140,11 +154,11 @@ public class ControladorProfesores {
 		Profesores profesor=profesores.findByDni(dni);
 		if(profesor==null) {
 
-			model.addAttribute("name", "Autoescuelas Alpine, No existe ese alumno");
+			model.addAttribute("name", "Autoescuelas Alpine, No existe ese profesor");
 
 			return "profesores/Consulta_profesor";
 		}else{
-			model.addAttribute("name", "Autoescuelas Alpine, Modificar alumno");
+			model.addAttribute("name", "Autoescuelas Alpine, Modificar profesor");
 
 			model.addAttribute("nombreCompleto", profesor.getNombreCompleto());
 			model.addAttribute("dni", profesor.getDni());
