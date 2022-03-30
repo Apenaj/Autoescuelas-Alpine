@@ -1,11 +1,40 @@
 <!DOCTYPE html>
 <html>
+<head>
+<style> 
+body {
+  background-image: url("https://s1.1zoom.me/b5050/397/Roads_Mountains_Scenery_461891_1920x1080.jpg");
+  background-color: #cccccc;
+  background-attachment: fixed;
+}
+
+label span { color: yellow; }
+</style>
+</head>
+	
 <body>
-	<form action="/login" method="post">
-		<input type="hidden" name="_csrf" value="{{token}}"/>
-		<label>User Name:</label><input type="text" name="username" /><br />
-		<label>Password:</label><input type="password" name="password" /><br />
-		<input type="submit" value="Sign In" /><br />
-	</form>
+	<p style="text-align:center">Bienvenido a autoescuelas alpine por favor inserte su usuario y clave para logearse</p>
+		<center>	
+		<img src="https://uh.gsstatic.es/sfAttachPlugin/1881253.jpg" width="640" height="480">
+		</center>
+		<br>
+<br>
+<br>
+<br>
+<br>
+		<div style="margin:0 auto;width:75%;text-align:left">
+		<form action="/login" method="post" style="text-align: center; ">
+			<input type="hidden" name="_csrf" value="{{token}}"/>
+			<label> Label <span>Nombre de usuario:</label><input type="text" name="username" /><br />
+			<label>Label <span>Contraseña usuario:</label><input type="password" name="password" /><br />
+			<input type="submit" value="Entrar" /><br />
+		</form>		
+		<li><a href="Contacto"style="color: yellow" >Contacto</a></li>
+		<li><a href="Requerimiento"style="color: yellow">Requerimientos carnet de conducir</a></li>
+		<li><a href="https://revista.dgt.es/es/noticias/"style="color: yellow">Noticias Dgt</a></li>
+		
+		</div>
+
 </body>
 </html>
+	

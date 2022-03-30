@@ -35,7 +35,14 @@ public class WebController {
 	// return "pagina_bienvenida";
 	//}
 	
+	@GetMapping("/Requerimiento")
+	public String Requerimientos() {
+		return "login/Requerimientos";
+	}
 	
-	
+	@GetMapping("/Contacto")
+	public String contacto() {
+		return "login/Contacto";
+	}
 	
 }
