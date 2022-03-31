@@ -17,7 +17,7 @@ public class Profesores {
 	@Id
 	private String dni;
 	private String nombreCompleto;
-
+	private String email;
 	
 	
 	public Profesores() {
@@ -25,10 +25,12 @@ public class Profesores {
 	}
 	
 	
-	public Profesores(String nombreCompleto, String dni) {
+	//public Profesores(String nombreCompleto, String dni) {
+		public Profesores(String nombreCompleto, String dni,String email) {
 		super();
 		this.nombreCompleto = nombreCompleto;
 		this.dni = dni;
+		this.email=email;
 	}
 
 
@@ -46,6 +48,12 @@ public class Profesores {
 		this.dni = dni;
 	}
 	
-	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 }

@@ -24,6 +24,7 @@ import AutoescuelasAlpine.modelo.Profesores;
 import AutoescuelasAlpine.modelo.ProfesoresRepository;
 import AutoescuelasAlpine.modelo.User;
 import AutoescuelasAlpine.modelo.UserRepository;
+import AutoescuelasAlpine.servicioInterno.NotificacionService;
 
 /**
  * @author ja.conde
@@ -69,28 +70,44 @@ public class ControladorProfesores {
 		model.addAttribute("nombreCompleto", "");
 		model.addAttribute("dni", "");
 		model.addAttribute("password", "");
-		
+		model.addAttribute("email", "");
 		return "profesores/Alta_profesor";
 	}
 
 	@PostMapping("/procesarAltaProfesores")
-	public String procesarAltaProfesores(Model model, @RequestParam String nombreCompleto,@RequestParam String dni,@RequestParam String password) {
-		
+	//public String procesarAltaProfesores(Model model, @RequestParam String nombreCompleto,@RequestParam String dni,@RequestParam String password) {
+		public String procesarAltaProfesores(Model model, @RequestParam String nombreCompleto,@RequestParam String dni,@RequestParam String password,@RequestParam String email){
 		Profesores profesor=profesores.findByDni(dni);
 		User usuario=userRepository.findByname(dni);
 		if(profesor==null && usuario==null) {
-			profesores.save(new Profesores(nombreCompleto, dni));
+			//profesores.save(new Profesores(nombreCompleto, dni));
 			
+			//test
+			profesores.save(new Profesores(nombreCompleto, dni,email));
+			String mensaje="Se ha dado de alta en la Autoescuela Alpine, estos son sus datos para entrar:";
+			mensaje=mensaje+"</br>usuario:"+dni;
+			mensaje=mensaje+"</br>password:"+password;
+			mensaje=mensaje+"</br> Un saludo.";
+			String respMensaje;
+			if(NotificacionService.enviarNotificacion(email, mensaje)) {
+				respMensaje="Correo enviado correctamente";
+			}else {
+				respMensaje="Error al enviar el correo.";
+			}
+			
+			
+			
+			//
 			List<String> listaRolesUser=new ArrayList<String>();
 			listaRolesUser.add(User.ROL_PROFESOR);	 
 			userRepository.save(
 					new User(dni,passwordEncoder.encode(password),listaRolesUser));
 			
-			model.addAttribute("name", "Autoescuelas Alpine, Nuevo profesor grabado correctamente");
+			model.addAttribute("name", "Autoescuelas Alpine, Nuevo profesor grabado correctamente"+respMensaje);
 			
 			model.addAttribute("nombreCompleto", nombreCompleto);
 			model.addAttribute("dni", dni);
-			
+			model.addAttribute("email", email);
 			
 			
 			return "profesores/Detalle_profesor";
@@ -101,10 +118,12 @@ public class ControladorProfesores {
 				Alumno alumno=alumnos.findByDni(dni);
 				model.addAttribute("nombreCompleto", alumno.getNombreCompleto());
 				model.addAttribute("dni", alumno.getDni());
+				model.addAttribute("email", email);
 			}else {
 				model.addAttribute("name", "Autoescuelas Alpine, Ya existe un profesor con ese dni no puede darse de alta al profesor");
 				model.addAttribute("nombreCompleto", profesor.getNombreCompleto());
 				model.addAttribute("dni", profesor.getDni());
+				model.addAttribute("email", email);
 			}
 			
 				
@@ -141,6 +160,7 @@ public class ControladorProfesores {
 			
 			model.addAttribute("nombreCompleto", profesor.getNombreCompleto());
 			model.addAttribute("dni", profesor.getDni());
+			model.addAttribute("email", profesor.getEmail());
 			
 			
 			
@@ -162,23 +182,26 @@ public class ControladorProfesores {
 
 			model.addAttribute("nombreCompleto", profesor.getNombreCompleto());
 			model.addAttribute("dni", profesor.getDni());
+			model.addAttribute("email", profesor.getEmail());
 
 			return "profesores/Modificar_profesor";
 		}
 	}
 	
 	@PostMapping("/procesarModificarProfesores")
-	public String procesarModificarProfesores(Model model, @RequestParam String nombreCompleto,@RequestParam String dni) {
+	public String procesarModificarProfesores(Model model, @RequestParam String nombreCompleto,@RequestParam String dni,@RequestParam String email) {
 		
 		Profesores profesor=profesores.findByDni(dni);
 		if(profesor!=null) {
 			profesor.setNombreCompleto(nombreCompleto);
 			profesor.setDni(dni);
+			profesor.setEmail(email);
 			profesores.save(profesor);
 			model.addAttribute("name", "Autoescuelas Alpine, Profesor grabado correctamente");
 			
 			model.addAttribute("nombreCompleto", nombreCompleto);
 			model.addAttribute("dni", dni);
+			model.addAttribute("email", profesor.getEmail());
 			
 			return "profesores/Detalle_profesor";
 		}else{
