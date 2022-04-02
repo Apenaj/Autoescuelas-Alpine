@@ -9,6 +9,13 @@ body {
 }
 
 label span { color: yellow; }
+
+label {
+  display: inline-block;
+  width: 140px;
+  text-align: left;
+}​
+
 </style>
 </head>
 	
@@ -21,12 +28,12 @@ label span { color: yellow; }
 <br>
 <br>
 <br>
-<br>
-		<div style="margin:0 auto;width:75%;text-align:left">
+		<div class="block" style="margin:0 auto;width:75%;text-align:left">
 		<form action="/login" method="post" style="text-align: center; ">
 			<input type="hidden" name="_csrf" value="{{token}}"/>
-			<label> Label <span>Nombre de usuario:</label><input type="text" name="username" /><br />
-			<label>Label <span>Contraseña usuario:</label><input type="password" name="password" /><br />
+			<label> Label <span>Usuario/Dni:</label><input type="text" name="username" /><br />
+			<label>Label <span>Contraseña:</label><input type="password" name="password" /><br />
+			<br />
 			<input type="submit" value="Entrar" /><br />
 		</form>		
 		<li><a href="Contacto"style="color: yellow" >Contacto</a></li>
