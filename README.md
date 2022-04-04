@@ -140,6 +140,8 @@ Para acceder a la web abrimos el navegador con la direccion https://localhost:84
 
 ![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/Login.png)
 Login
+![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/Principal.jpeg)
+Principal
 ![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/AltaAlumno.png)
 Da de alta a un alumno, se enviara un correo de notificacion al usuario cuando se registre
 ![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/BusquedaAlumno.png)
