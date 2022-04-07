@@ -128,7 +128,7 @@ Una vez completado lo anterior se recomienda abrirse un editor de texto y crears
  #!/bin/bash
  #_*_ENCODING: UTF-8 _*_
 
- java-jar Inicio-Alpine-0.0.1-SNAPSHOT.jar & java-jar serviciointerno-0.0.1-SNAPSHOT.jar
+ java -jar Inicio-Alpine-0.0.1-SNAPSHOT.jar & java -jar serviciointerno-0.0.1-SNAPSHOT.jar
 
 ~~~
 
