@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +29,7 @@ import AutoescuelasAlpine.servicioInterno.NotificacionService;
 import javax.servlet.http.HttpServletRequest;
 /**
  * @author ja.conde
- *
+ * @author a.penaj
  */
 @Controller
 public class ControladorAlumnos {
@@ -140,7 +141,7 @@ public class ControladorAlumnos {
 		
 		return "alumno/Consulta_alumno";
 	}
-
+	
 	@PostMapping("/procesarBuscaAlumno")
 	public String procesarBuscaAlumno(Model model, @RequestParam String dni) {
 		
