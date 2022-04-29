@@ -45,6 +45,9 @@ public class ControladorProfesores {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	@Autowired
+	private NotificacionService notificacionService;
+	
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
 
@@ -89,7 +92,7 @@ public class ControladorProfesores {
 			mensaje=mensaje+"</br>password:"+password;
 			mensaje=mensaje+"</br> Un saludo.";
 			String respMensaje;
-			if(NotificacionService.enviarNotificacion(email, mensaje)) {
+			if(notificacionService.enviarNotificacion(email, mensaje)) {
 				respMensaje="Correo enviado correctamente";
 			}else {
 				respMensaje="Error al enviar el correo.";

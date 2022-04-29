@@ -1,0 +1,77 @@
+en el cconfiguracion de spring boot hay que poner en la base de datos el nombre de mysq del pc de red que es el mismo del contendor si no spring da error al compilar al no encontrar la base de datos
+git clone "direccion web del repositorio"
+
+hacer un git clone del respositorio 
+
+0)creamos una nueva red
+
+docker network create red-alpine
+
+1)creamos la base de datos
+
+docker run -p 3305:3306 -d --name LAPTOP-6HUMOL7G --network red-alpine -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=jose -e MYSQL_PASSWORD=root -e MYSQL_DATABASE=autoescuelaalpine mysql:8.0.28-oracle
+
+***este no hace falta expomer el puerto fuera
+docker run -d --name LAPTOP-6HUMOL7G --network red-alpine -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=jose -e MYSQL_PASSWORD=root -e MYSQL_DATABASE=autoescuelaalpine mysql:8.0.28-oracle
+
+
+3)creamos un contenedor para el programa principal de alpñine
+
+Fichero Dockerfile.txt(a poner en el directorio de trabajo guardado con un .txt):
+
+# Selecciona la imagen base
+FROM openjdk:17-jdk-slim
+# Define el directorio de trabajo para el comando
+WORKDIR /Autoescuelas-Alpine/
+# Copia de la aplicación compilada
+COPY /Ejecutablesjava/Inicio-Alpine-0.0.1-SNAPSHOT.jar .
+# Indica el puerto que expone el contenedor
+EXPOSE 8443
+# Comando que se ejecuta al hacer docker run
+CMD [ "java", "-jar", "Inicio-Alpine-0.0.1-SNAPSHOT.jar" ]
+
+
+4)construimos el contenedor
+
+docker build -f jar.Dockerfile.txt -t miusuario/java-webapp .
+
+
+
+5)ejecutar el contenedor
+
+winpty docker run -d --network red-alpine --name autoescuelaalpine -it -p 8443:8443 miusuario/java-webapp
+
+
+
+6)
+servicio interno:(jarinterno.Dockerfile.txt)
+
+# Selecciona la imagen base
+FROM openjdk:17-jdk-slim
+# Define el directorio de trabajo para el comando
+WORKDIR /Autoescuelas-Alpine/
+# Copia de la aplicación compilada
+COPY /Ejecutablesjava/serviciointerno-0.0.1-SNAPSHOT.jar .
+# Indica el puerto que expone el contenedor
+EXPOSE 8444
+# Comando que se ejecuta al hacer docker run
+CMD [ "java", "-jar", "serviciointerno-0.0.1-SNAPSHOT.jar" ]
+
+7)construimos el contenedor
+docker build -f jarinterno.Dockerfile.txt -t miusuario/java-webapp2 .
+
+8)ejecutar el contenedor
+winpty docker run -d --network red-alpine --name autoescuelaalpineinterno -it -p 8444:8444 miusuario/java-webapp2
+
+***este no hace falta exponer el puerto fuera
+
+winpty docker run -d --network red-alpine --name autoescuelaalpineinterno -it miusuario/java-webapp2
+
+en el servicio interno hay que cambiar en la clase de mensaje en vez de localhost con el nombre del contenedor
+private static final String MAIL_SERVICE_URL = "http://autoescuelaalpineinterno:8444";
+
+
+docker compose:
+
+
+$ docker -d-compose up
