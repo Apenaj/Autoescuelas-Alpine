@@ -9,6 +9,8 @@ services:
   image: mysql:8.0.28-oracle
   volumes:
    - ./data/db:/var/lib/mysql
+  networks:
+   - redalpine-network
  
  autoescuelaalpineinterno:
   build:
@@ -19,28 +21,42 @@ services:
   build:
    context: .
    dockerfile: jar.Dockerfile.txt
+   args:
+        nombreInstancia: autoescuelaalpine
   depends_on:
    - LAPTOP-6HUMOL7G
    - autoescuelaalpineinterno
-      
+  networks:
+   - redalpine-network     
 
  autoescuelaalpine2:
   build:
    context: .
    dockerfile: jar.Dockerfile.txt
+   args:
+        nombreInstancia: autoescuelaalpine2
   depends_on:
    - LAPTOP-6HUMOL7G
    - autoescuelaalpineinterno
+  networks:
+   - redalpine-network
 
  haproxy:
   build:
    context: .
    dockerfile: haproxy.Dockerfile.txt
-  ports:
-   - 8443:8443
-  command: -f haproxy.cfg 
   depends_on:
    - LAPTOP-6HUMOL7G
    - autoescuelaalpineinterno
    - autoescuelaalpine
    - autoescuelaalpine2
+  ports:
+   - 8443:8443
+  command: -f haproxy.cfg 
+  networks:
+   - redalpine-network
+   
+networks:
+ redalpine-network:
+  driver: bridge
+  

@@ -1,0 +1,21 @@
+global
+ # turn on stats unix socket
+
+defaults
+ mode tcp
+ timeout connect 5s
+ timeout client  5s
+ timeout server  5s
+ 
+frontend  http-in
+ bind *:8443
+ option http-server-close
+ option forwardfor
+ default_backend servers
+ 
+backend servers
+ balance roundrobin
+ option httpclose
+ option forwardfor
+ server web1 autoescuelaalpine:8443 check
+ server web2 autoescuelaalpine2:8443 check

@@ -1,0 +1,63 @@
+version: '3.3'
+services:
+ LAPTOP-6HUMOL7G:
+  environment:
+   - MYSQL_ROOT_PASSWORD=root
+   - MYSQL_USER=jose
+   - MYSQL_PASSWORD=root
+   - MYSQL_DATABASE=autoescuelaalpine
+  image: mysql:8.0.28-oracle
+  volumes:
+   - ./data/db:/var/lib/mysql
+  networks:
+   - redalpine-network
+ 
+ autoescuelaalpineinterno:
+  build:
+   context: .
+   dockerfile: jarinterno.Dockerfile.txt
+
+ autoescuelaalpine:
+  build:
+   context: .
+   dockerfile: jar.Dockerfile.txt
+   args:
+        nombreInstancia: autoescuelaalpine
+  depends_on:
+   - LAPTOP-6HUMOL7G
+   - autoescuelaalpineinterno
+  networks:
+   - redalpine-network     
+
+ autoescuelaalpine2:
+  build:
+   context: .
+   dockerfile: jar.Dockerfile.txt
+   args:
+        nombreInstancia: autoescuelaalpine2
+  depends_on:
+   - LAPTOP-6HUMOL7G
+   - autoescuelaalpineinterno
+  networks:
+   - redalpine-network
+
+ haproxy:
+  build:
+   context: .
+   dockerfile: haproxy.Dockerfile.txt
+  depends_on:
+   - LAPTOP-6HUMOL7G
+   - autoescuelaalpineinterno
+   - autoescuelaalpine
+   - autoescuelaalpine2
+  ports:
+   - 8443:8443
+  command: -f haproxy.cfg 
+  networks:
+   - redalpine-network
+   
+networks:
+ redalpine-network:
+  driver: bridge
+  name: redalpine-network
+  

@@ -140,6 +140,7 @@ public class ControladorAlumnos {
 	
 	@GetMapping("/buscaAlumno")
 	public String buscaAlumno(Model model) {
+		System.out.println("busca alumno");
 		model.addAttribute("name", "Autoescuelas Alpine, Buscar alumno");
 		
 		return "alumno/Consulta_alumno";
@@ -147,7 +148,7 @@ public class ControladorAlumnos {
 	
 	@PostMapping("/procesarBuscaAlumno")
 	public String procesarBuscaAlumno(Model model, @RequestParam String dni) {
-		
+		System.out.println("procesa busca alumno");
 		Alumno alumno=alumnos.findByDni(dni);
 		if(alumno==null) {
 			
