@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import AutoescuelasAlpine.InicioAlpineApplication;
+
 @Configuration
 public class CSRFHandlerConfiguration implements WebMvcConfigurer {
 	
@@ -25,8 +27,6 @@ public class CSRFHandlerConfiguration implements WebMvcConfigurer {
 }
 
 class CSRFHandlerInterceptor implements HandlerInterceptor {
-	
-	private static final String NOMBRE_INSTANCIA="NOMBRE_INSTANCIA";
 	
 	
     public CSRFHandlerInterceptor(Environment environment) {
@@ -46,7 +46,7 @@ class CSRFHandlerInterceptor implements HandlerInterceptor {
 			if (token != null) {
 				modelAndView.addObject("token", token.getToken());
 			}
-			modelAndView.addObject("servidor", environment.getProperty(NOMBRE_INSTANCIA));
+			modelAndView.addObject("servidor", environment.getProperty(InicioAlpineApplication.NOMBRE_INSTANCIA));
 		}
 	}
 }
