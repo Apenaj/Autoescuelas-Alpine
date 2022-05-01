@@ -12,7 +12,14 @@ services:
   networks:
    - redalpine-network
  
- autoescuelaalpineinterno:
+ autoescuelaalpineinternosi1:
+  build:
+   context: .
+   dockerfile: jarinterno.Dockerfile.txt
+  networks:
+   - redalpine-network
+
+ autoescuelaalpineinternosi2:
   build:
    context: .
    dockerfile: jarinterno.Dockerfile.txt
@@ -57,7 +64,21 @@ services:
   command: -f haproxy.cfg 
   networks:
    - redalpine-network
-   
+
+ autoescuelaalpineinterno:
+  build:
+   context: .
+   dockerfile: haproxySI.Dockerfile.txt
+  depends_on:
+   - LAPTOP-6HUMOL7G
+   - autoescuelaalpineinternosi1
+   - autoescuelaalpineinternosi2
+  ports:
+   - 1936:1936
+  command: -f haproxySI.cfg 
+  networks:
+   - redalpine-network 
+ 
 networks:
  redalpine-network:
   driver: bridge

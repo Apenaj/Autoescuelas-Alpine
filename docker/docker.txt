@@ -79,3 +79,6 @@ $ docker -d-compose up
 ./docker-compose -f /R/dockerR/docker/docker-compose.yml build
 
 ./docker-compose -f /R/dockerR/docker/docker-compose.yml up
+
+url para mirar estadisticas balancedor servicio interno, cambiar ip por la direccion adecuada
+http://192.168.99.100:1936/haproxy?stats

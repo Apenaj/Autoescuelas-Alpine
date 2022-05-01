@@ -1,0 +1,25 @@
+global
+ # turn on stats unix socket
+
+defaults
+ mode http
+ timeout connect 120s
+ timeout client  120s
+ timeout server  120s
+ listen stats:1936
+ stats enable
+ stats refresh 30s
+ stats show-node
+ stats uri /haproxy?stats
+ 
+frontend  http-in
+ bind *:8444
+ bind *:1936
+ option http-server-close
+ default_backend servers
+ 
+backend servers
+ balance roundrobin
+ option httpclose
+ server si1 autoescuelaalpineinternosi1:8444 check
+ server si2 autoescuelaalpineinternosi2:8444 check
