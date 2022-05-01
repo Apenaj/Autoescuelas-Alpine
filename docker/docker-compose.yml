@@ -61,6 +61,7 @@ services:
    - autoescuelaalpine2
   ports:
    - 8443:8443
+   - 1935:1935
   command: -f haproxy.cfg 
   networks:
    - redalpine-network

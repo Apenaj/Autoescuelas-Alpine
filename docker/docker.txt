@@ -74,7 +74,7 @@ private static final String MAIL_SERVICE_URL = "http://autoescuelaalpineinterno:
 docker compose:
 
 
-$ docker -d-compose up
+$ docker-compose up -d
 
 ./docker-compose -f /R/dockerR/docker/docker-compose.yml build
 
@@ -82,3 +82,5 @@ $ docker -d-compose up
 
 url para mirar estadisticas balancedor servicio interno, cambiar ip por la direccion adecuada
 http://192.168.99.100:1936/haproxy?stats
+url para mirar estadisticas balancedor app
+http://192.168.99.100:1935/haproxy?stats
