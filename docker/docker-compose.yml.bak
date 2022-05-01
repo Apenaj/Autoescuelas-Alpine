@@ -59,5 +59,4 @@ services:
 networks:
  redalpine-network:
   driver: bridge
-  name: redalpine-network
   

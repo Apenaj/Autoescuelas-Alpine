@@ -16,6 +16,8 @@ services:
   build:
    context: .
    dockerfile: jarinterno.Dockerfile.txt
+  networks:
+   - redalpine-network
 
  autoescuelaalpine:
   build:

@@ -1,7 +1,5 @@
 package AutoescuelasAlpine;
 
-import java.util.Collections;
-
 import javax.annotation.Resource;
 
 import org.apache.juli.logging.Log;
@@ -24,6 +22,8 @@ import com.hazelcast.config.JoinConfig;
 public class InicioAlpineApplication {
 	
 	public static final String NOMBRE_INSTANCIA="NOMBRE_INSTANCIA";
+	public static final String CACHE_ALUMNOS="alumnos";
+	public static final String CACHE_CARNETS="carnets";
 
 	private static final Log LOG = (Log) LogFactory.getLog(InicioAlpineApplication.class);
 
@@ -33,9 +33,10 @@ public class InicioAlpineApplication {
 	
 	@Bean
 	public CacheManager cachemanager() {
-		LOG.info("Activando caché");
-		return new ConcurrentMapCacheManager("alumnos");
+		LOG.info("Activando caché alumnos");
+		return new ConcurrentMapCacheManager(CACHE_ALUMNOS,CACHE_CARNETS);
 	}
+	
 	
 	@Resource
     private Environment environment;

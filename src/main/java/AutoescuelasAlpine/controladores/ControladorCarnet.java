@@ -4,6 +4,7 @@
 package AutoescuelasAlpine.controladores;
 
 import java.security.Principal;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -94,10 +95,10 @@ public class ControladorCarnet {
 		
 			return "carnet/Consulta_Carnet";
 		}else{
-			Carnet carnet=carnets.getById(tipo);
+			Optional<Carnet> carnet=carnets.findById(tipo);
 			model.addAttribute("name", "Autoescuelas Alpine, Carnet");
 			
-			model.addAttribute("tipo", carnet.getTipo());
+			model.addAttribute("tipo", carnet.get().getTipo());
 			
 			
 			return "carnet/Detalle_Carnet";
@@ -116,10 +117,10 @@ public class ControladorCarnet {
 
 			return "carnet/Consulta_Carnet";
 		}else{
-			Carnet carnet=carnets.getById(tipo);
+			Optional<Carnet> carnet=carnets.findById(tipo);
 			model.addAttribute("name", "Autoescuelas Alpine,  Carnet borrado correctamente");
 
-			carnets.delete(carnet);
+			carnets.delete(carnet.get());
 			
 			return "carnet/Consulta_Carnet";
 		}

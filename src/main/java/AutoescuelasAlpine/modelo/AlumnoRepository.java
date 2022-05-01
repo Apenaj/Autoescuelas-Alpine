@@ -10,11 +10,13 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import AutoescuelasAlpine.InicioAlpineApplication;
+
 /**
  * @author ja.conde
  * @author a.penaj
  */
-@CacheConfig(cacheNames="alumnos")
+@CacheConfig(cacheNames=InicioAlpineApplication.CACHE_ALUMNOS)
 public interface AlumnoRepository extends JpaRepository<Alumno, String> {
 	
 	@CacheEvict(allEntries=true)

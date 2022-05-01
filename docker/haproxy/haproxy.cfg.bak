@@ -3,9 +3,9 @@ global
 
 defaults
  mode tcp
- timeout connect 5s
- timeout client  5s
- timeout server  5s
+ timeout connect 120s
+ timeout client  120s
+ timeout server  120s
  
 frontend  http-in
  bind *:8443

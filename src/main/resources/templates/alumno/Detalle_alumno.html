@@ -2,7 +2,9 @@
 <body style="background-color:grey;">
 <p>Eres el usuario: {{username}}</p>
 <p>Eres profesor:{{profesor}}</p>
-
+{{#admin}}
+<p>Estamos en servidor:{{servidor}}</p>
+{{/admin}}
 <p>Bienvenido a {{name}}</p>
 
 	<a href="bienvenida">Bienvenida</a>

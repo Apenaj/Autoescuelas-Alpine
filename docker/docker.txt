@@ -1,4 +1,4 @@
-en el cconfiguracion de spring boot hay que poner en la base de datos el nombre de mysq del pc de red que es el mismo del contendor si no spring da error al compilar al no encontrar la base de datos
+﻿en el cconfiguracion de spring boot hay que poner en la base de datos el nombre de mysq del pc de red que es el mismo del contendor si no spring da error al compilar al no encontrar la base de datos
 git clone "direccion web del repositorio"
 
 hacer un git clone del respositorio 
@@ -75,3 +75,7 @@ docker compose:
 
 
 $ docker -d-compose up
+
+./docker-compose -f /R/dockerR/docker/docker-compose.yml build
+
+./docker-compose -f /R/dockerR/docker/docker-compose.yml up

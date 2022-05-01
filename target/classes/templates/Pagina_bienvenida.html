@@ -1,5 +1,4 @@
 <html>
-<!--{{servidor}}-->
 <head>
 <style> 
 body {
@@ -18,6 +17,10 @@ body {
 <p>Bienvenido a {{name}}</p>
 <p>Eres el usuario: {{username}}</p>
 <p>Eres {{rol}}</p>
+{{#admin}}
+<p>Estamos en servidor:{{servidor}}</p>
+<a href="cache">ver cache</a>
+{{/admin}}
 <div>
 <h2>Acciones</h2>
 <ul>

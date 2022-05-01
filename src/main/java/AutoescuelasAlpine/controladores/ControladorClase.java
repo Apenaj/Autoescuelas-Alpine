@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -92,8 +93,8 @@ public class ControladorClase {
 			if(carnets.existsById(carnet)) {
 				Profesores profe=profesores.findByDni(profesor);
 				if(profe!=null) {
-					Carnet carnetC=carnets.getById(carnet);
-					Clase clase=clases.save(new Clase(new Timestamp(fechaD.getTime()), carnetC,profe));
+					Optional<Carnet> carnetC=carnets.findById(carnet);
+					Clase clase=clases.save(new Clase(new Timestamp(fechaD.getTime()), carnetC.get(),profe));
 					model.addAttribute("name", "Autoescuelas Alpine, Nuevo clase grabado correctamente");
 					SimpleDateFormat formatoFechaHoraSalida = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 					model.addAttribute("fechaHoraComiezo", formatoFechaHoraSalida.format(new Date(clase.getFechaHoraComienzo().getTime())));
@@ -166,8 +167,7 @@ public class ControladorClase {
 		
 		if(carnets.existsById(carnet)) {
 
-			
-			List<Clase> listaClases=clases.findBycarnet(carnets.getById(carnet));
+			List<Clase> listaClases=clases.findBycarnet(carnets.findById(carnet).get());
 			if(listaClases==null || listaClases.isEmpty()) {
 
 				model.addAttribute("name", "Autoescuelas Alpine, No existen clases para ese carnet");
@@ -319,7 +319,7 @@ public class ControladorClase {
 				if(carnets.existsById(carnet)) {
 					Profesores profe=profesores.findByDni(profesor);
 					if(profe!=null) {
-						Carnet carnetC=carnets.getById(carnet);
+						Carnet carnetC=carnets.findById(carnet).get();
 						clase.setCarnet(carnetC);
 						clase.setFechaHoraComienzo(new Timestamp(fechaD.getTime()));
 						clase.setProfesor(profe);

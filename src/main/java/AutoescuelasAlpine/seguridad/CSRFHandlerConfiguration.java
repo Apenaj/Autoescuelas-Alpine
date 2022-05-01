@@ -13,6 +13,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import AutoescuelasAlpine.InicioAlpineApplication;
+import AutoescuelasAlpine.modelo.User;
 
 @Configuration
 public class CSRFHandlerConfiguration implements WebMvcConfigurer {
@@ -47,6 +48,7 @@ class CSRFHandlerInterceptor implements HandlerInterceptor {
 				modelAndView.addObject("token", token.getToken());
 			}
 			modelAndView.addObject("servidor", environment.getProperty(InicioAlpineApplication.NOMBRE_INSTANCIA));
+			modelAndView.addObject("admin", request.isUserInRole(User.ROL_ADMIN));
 		}
 	}
 }

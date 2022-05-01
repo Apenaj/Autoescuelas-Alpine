@@ -2,7 +2,9 @@
 <!--{{servidor}}-->
 <body style="background-color:grey;">
 <p>Bienvenido a {{name}}</p>
-
+{{#admin}}
+<p>Estamos en servidor:{{servidor}}</p>
+{{/admin}}
 <a href="bienvenida">Bienvenida</a>
 
 <form method="post" action='procesarAltaAlumno'>
