@@ -6,6 +6,7 @@ services:
    - MYSQL_USER=jose
    - MYSQL_PASSWORD=root
    - MYSQL_DATABASE=autoescuelaalpine
+  restart: on-failure
   image: mysql:8.0.28-oracle
   volumes:
    - ./data/db:/var/lib/mysql
@@ -16,6 +17,7 @@ services:
   build:
    context: .
    dockerfile: jarinterno.Dockerfile.txt
+  restart: on-failure
   networks:
    - redalpine-network
 
@@ -23,6 +25,7 @@ services:
   build:
    context: .
    dockerfile: jarinterno.Dockerfile.txt
+  restart: on-failure
   networks:
    - redalpine-network
 
@@ -35,6 +38,7 @@ services:
   depends_on:
    - LAPTOP-6HUMOL7G
    - autoescuelaalpineinterno
+  restart: on-failure
   networks:
    - redalpine-network     
 
@@ -47,6 +51,7 @@ services:
   depends_on:
    - LAPTOP-6HUMOL7G
    - autoescuelaalpineinterno
+  restart: on-failure
   networks:
    - redalpine-network
 
@@ -59,6 +64,7 @@ services:
    - autoescuelaalpineinterno
    - autoescuelaalpine
    - autoescuelaalpine2
+  restart: on-failure
   ports:
    - 8443:8443
    - 1935:1935
@@ -74,6 +80,7 @@ services:
    - LAPTOP-6HUMOL7G
    - autoescuelaalpineinternosi1
    - autoescuelaalpineinternosi2
+  restart: on-failure
   ports:
    - 1936:1936
   command: -f haproxySI.cfg 
