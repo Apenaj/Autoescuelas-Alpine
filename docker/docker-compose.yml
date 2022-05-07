@@ -10,6 +10,8 @@ services:
   image: mysql:8.0.28-oracle
   volumes:
    - ./data/db:/var/lib/mysql
+  user:
+    mysql
   networks:
    - redalpine-network
  
