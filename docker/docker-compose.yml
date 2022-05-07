@@ -9,7 +9,7 @@ services:
   restart: on-failure
   image: mysql:8.0.28-oracle
   volumes:
-   - ./data/db:/var/lib/mysql
+   - ./data/db:/var/lib/mysql:rw
   user:
     mysql
   networks:
