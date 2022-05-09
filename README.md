@@ -1,6 +1,6 @@
 # Autoescuelas-Alpine
 
-##Video
+## Video
 https://www.youtube.com/watch?v=t3GtbkhReMg	
 
 ## Descripcion
@@ -45,7 +45,7 @@ Pagina web para gestionar una autoescuela.
 ## Diagrama de clases
 ![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/DiagramaClases.png)
 
-##Infraestructura Docker
+## Infraestructura Docker
 ![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/docker.png)
 
 ## Instrucciones de instalacion en VM
