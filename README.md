@@ -59,6 +59,118 @@ Los 2 archivos jar de la aplicación,servidor y servicio interno compilados desd
 
 Como instalar los componentes si no se tiene instalado mysql server y java.
 
+# Documentacion Servicio Interno
+El servicio interno consiste en el envio de un correo al gmail cuando se dan de alta un profesor o un alumno nuevo
+
+Si el profesor entra en la pestaña de alta alumno, deberá introducir los datos: Dni, Nombre, Contraseña y Correo. Al dar de alta el usuario se enviara un mensaje a la direccion de correo indicada. Esto sucede cada vez que damos de alta a alguien
+
+## Correo GMAIL (API REST)
+En los paquetes de la web principal, tenemos la clase Message con sus atributos to,asunto y body. 
+Ademas tenemos el NotificacionService que es el encargado de comunicarse con el servicio interno para enviar el mensaje.
+
+~~~
+...
+@Service
+public class NotificacionService{
+	
+	
+	
+	private static final String MAIL_SERVICE_URL = "MAIL_SERVICE_URL";
+	
+	@Resource
+    private Environment environment;
+	
+	public boolean enviarNotificacion (String direccionCorreo,String mensaje) {
+		try {
+			Message msg = new Message(direccionCorreo,"Bienvenido a Autoescuela Alpine", mensaje);
+
+			HttpEntity<Message> httpEntity = new HttpEntity<>(msg);
+			
+			RestTemplate restTemplate = new RestTemplate();
+			ResponseEntity<Void> res =restTemplate.postForEntity( environment.getProperty(MAIL_SERVICE_URL) + "/notificacion", httpEntity, Void.class);
+
+			if(res.getStatusCode() == HttpStatus.CREATED) {
+				System.out.println("Enviado correctamente");
+				return true;
+			}else{
+				System.out.println("Error enviando:"+res.getStatusCode());
+				return false;
+			}
+		}catch (Exception e) {
+			System.out.println("Error enviando:"+e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+}
+~~~
+
+En la aplicacion del servicio interno tenemos tambien la misma clase message que tenemos en el servicio web. Ademas en esta aplicacion estara el controlador de la aplicacion y el enviocorreo que se encarga de realizar las configuracion para enviarlo
+
+~~~
+...
+@Component
+public class EnvioCorreo {
+	
+	@Autowired
+	private JavaMailSender sender;
+	
+	public boolean send(Message mensaje) {
+		
+		MimeMessage email = sender.createMimeMessage();
+		
+		try {
+			
+			MimeMessageHelper helper = new MimeMessageHelper(email,true);
+			
+			//Campos necesarios para mandar el correo 
+			helper.setFrom(Message.CORREO_ORIGEN); // dirección origen
+			helper.setTo(mensaje.getTo()); // dirección destino
+			helper.setSubject(mensaje.getAsunto()); // asunto del correo
+			helper.setText(mensaje.getBody(), true); // cuerpo del mensaje
+			
+			sender.send(email);
+			
+			return true;
+			
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+
+}
+
+~~~
+
+Por ultimo para las configuraciones properties se han añadido las siguientes lineas.
+
+WEB
+
+~~~
+MAIL_SERVICE_URL = http://localhost:8444
+NOMBRE_INSTANCIA = instancia1
+~~~
+
+SERVICIO INTERNO
+
+~~~
+server.port=8444
+spring.mail.host=smtp.gmail.com
+spring.mail.properties.mail.smtp.port=587
+spring.mail.username=alpinedad2022@gmail.com
+spring.mail.password=webDaD22
+spring.mail.properties.mail.transport.protocol=smtp
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+spring.mail.properties.mail.smtp.ssl.trust=smtp.gmail.com
+spring.mail.properties.mail.smtp.starttls.required=true
+~~~
+
+
 ### Mysql server
 
 - Abrimos el terminal de ubuntu(boton derecho raton→terminal.)
