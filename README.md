@@ -1,6 +1,9 @@
 # Autoescuelas-Alpine
+##Video
+https://www.youtube.com/watch?v=t3GtbkhReMg	
+
 ## Descripcion
-Vamos a hacer una pagina web para gestionar una autoescuela.
+Pagina web para gestionar una autoescuela.
 
 ## Funcionalidades
 ### Publicas:
