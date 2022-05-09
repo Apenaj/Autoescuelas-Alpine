@@ -48,17 +48,6 @@ Pagina web para gestionar una autoescuela.
 ## Infraestructura Docker
 ![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/docker.png)
 
-## Instrucciones de instalacion en VM
-Requerimientos preinstalacion:
-Se presume que el sistema operativo ya esta instalado con virtualbox.
-
-Mysql server
-JAVA
-
-Los 2 archivos jar de la aplicación,servidor y servicio interno compilados desde spring boot  (run as mavel desde el boton derecho del raton encima de cada proyecto)
-
-Como instalar los componentes si no se tiene instalado mysql server y java.
-
 # Documentacion Servicio Interno
 El servicio interno consiste en el envio de un correo al gmail cuando se dan de alta un profesor o un alumno nuevo
 
@@ -170,6 +159,16 @@ spring.mail.properties.mail.smtp.ssl.trust=smtp.gmail.com
 spring.mail.properties.mail.smtp.starttls.required=true
 ~~~
 
+## Instrucciones de instalacion en VM
+Requerimientos preinstalacion:
+Se presume que el sistema operativo ya esta instalado con virtualbox.
+
+Mysql server
+JAVA
+
+Los 2 archivos jar de la aplicación,servidor y servicio interno compilados desde spring boot  (run as mavel desde el boton derecho del raton encima de cada proyecto)
+
+Como instalar los componentes si no se tiene instalado mysql server y java.
 
 ### Mysql server
 
