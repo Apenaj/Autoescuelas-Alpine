@@ -152,8 +152,8 @@ SERVICIO INTERNO
 server.port=8444
 spring.mail.host=smtp.gmail.com
 spring.mail.properties.mail.smtp.port=587
-spring.mail.username=alpinedad2022@gmail.com
-spring.mail.password=webDaD22
+spring.mail.username=username
+spring.mail.password=password
 spring.mail.properties.mail.transport.protocol=smtp
 spring.mail.properties.mail.smtp.auth=true
 spring.mail.properties.mail.smtp.starttls.enable=true
