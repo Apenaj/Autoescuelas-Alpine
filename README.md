@@ -45,10 +45,10 @@ Pagina web para gestionar una autoescuela.
 ![DiagramaNavegacion](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/diag_nav_autoescuela.png)
 
 ## Diagrama de clases
-![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/DiagramaClases.png)
+
 
 ## Infraestructura Docker
-![](https://github.com/Apenaj/Autoescuelas-Alpine/blob/main/img/docker.png)
+
 
 # Documentacion Servicio Interno
 El servicio interno consiste en el envio de un correo al gmail cuando se dan de alta un profesor o un alumno nuevo
